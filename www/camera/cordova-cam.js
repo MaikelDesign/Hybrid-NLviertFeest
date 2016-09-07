@@ -17,7 +17,6 @@
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
 var imageID;
-/*hoi hoi*/
 
 
 // Cordova is ready to be used!
@@ -87,7 +86,6 @@ function captureAndSavePhoto(uib_id) {
 }
 window.captureAndSavePhoto = captureAndSavePhoto;
 
-//testjes
 
 // A button will call this function
 function capturePhotoEdit(uib_id) {
