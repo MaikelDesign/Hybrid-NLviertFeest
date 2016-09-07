@@ -17,6 +17,7 @@
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
 var imageID;
+    /*test*/
 
 
 
