@@ -87,6 +87,8 @@ function captureAndSavePhoto(uib_id) {
 }
 window.captureAndSavePhoto = captureAndSavePhoto;
 
+//testjes
+
 // A button will call this function
 function capturePhotoEdit(uib_id) {
   imageID = uib_id || '#IMAGE';
