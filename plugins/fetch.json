@@ -1,50 +1,42 @@
 {
     "cordova-plugin-device": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-console": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-console"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist"
+            "type": "local",
+            "path": "/Applications/Intel XDK.app/Contents/Resources/app.nw/components/server/cordova/cordova-plugins/cordova-plugin-device"
         },
         "is_top_level": true,
         "variables": {}
     },
     "cordova-plugin-splashscreen": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-splashscreen"
+            "type": "local",
+            "path": "/Applications/Intel XDK.app/Contents/Resources/app.nw/components/server/cordova/cordova-plugins/cordova-plugin-splashscreen"
         },
         "is_top_level": true,
         "variables": {}
     },
     "cordova-plugin-statusbar": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-statusbar"
+            "type": "local",
+            "path": "/Applications/Intel XDK.app/Contents/Resources/app.nw/components/server/cordova/cordova-plugins/cordova-plugin-statusbar"
         },
         "is_top_level": true,
         "variables": {}
     },
-    "ionic-plugin-keyboard": {
+    "cordova-plugin-camera": {
         "source": {
-            "type": "registry",
-            "id": "ionic-plugin-keyboard"
+            "type": "local",
+            "path": "/Applications/Intel XDK.app/Contents/Resources/app.nw/components/server/cordova/cordova-plugins/cordova-plugin-camera"
         },
         "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-compat": {
+        "source": {
+            "type": "local",
+            "path": "/Applications/Intel XDK.app/Contents/Resources/app.nw/components/server/cordova/cordova-plugins/cordova-plugin-compat"
+        },
+        "is_top_level": false,
         "variables": {}
     }
 }
