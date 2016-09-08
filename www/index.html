@@ -66,6 +66,7 @@
         <script type="application/javascript" src="lib/jquery.min.js"></script>
         <script type="application/javascript" src="framework7/js/framework7.min.js"></script>
         <script type="application/javascript" src="camera/cordova-cam.js"></script>
+        <script type="application/javascript" src="js/pull-to-refresh.js"></script>
     </head>
 
     <body>
@@ -74,32 +75,78 @@
         <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
         <div class="uwrap views">
             <div class="upage vertical-col left view-main view" id="mainpage">
+					
+				<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <div class="widget-container content-area horiz-area wrapping-col"></div>
+                        </div>
+                        <div class="center labeltext">Nederland Viert Feest</div>
+                        <div class="right">
+                            <div class="widget-container content-area horiz-area wrapping-col"></div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="pages">
 
-                    <div class="page navbar-fixed">
-                        <div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">
-                            <div class="navbar-inner">
-                                <div class="left">
-                                    <div class="widget-container content-area horiz-area wrapping-col"></div>
-                                </div>
-                                <div class="center labeltext">Header</div>
-                                <div class="right">
-                                    <div class="widget-container content-area horiz-area wrapping-col"></div>
+                    <div class="page navbar-fixed" data-page="index">
+                                               
+                        <div class="page-content upage-content content-area hide-tabbar-on-scroll pull-to-refresh-content" id="page_78_87" data-ptr-distance="44">
+                            <div class="widget uib_w_7 d-margins" data-uib="framework7/list_block" data-ver="0">
+                                <div class="list-block cu-no-margin">
+                                    <ul class="cu-events">
+                                        <li class="media-item widget uib_w_11 d-margins" data-uib="framework7/media_item" data-ver="0">
+                                        	<a href="event.php">
+	                                            <div class="item-content">
+	                                                <div class="item-media">
+	                                                    <img src="images/Strabburg.jpg" height="80">
+	                                                </div>
+	                                                <div class="item-inner">
+	                                                    <div class="item-title-row">
+	                                                        <div class="item-title">Item title</div>
+	                                                        <div class="item-after">Label</div>
+	                                                    </div>
+	                                                    <div class="item-subtitle">Subtitle</div>
+	                                                    <div class="item-text">Details</div>
+	                                                </div>
+	                                            </div>
+                                        	</a>    
+                                        </li>
+                                        <li class="media-item widget uib_w_12 d-margins" data-uib="framework7/media_item" data-ver="0">
+                                            <div class="item-content">
+                                                <div class="item-media">
+                                                    <img src="images/Strabburg.jpg" height="80">
+                                                </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title-row">
+                                                        <div class="item-title">Item title</div>
+                                                        <div class="item-after">Label</div>
+                                                    </div>
+                                                    <div class="item-subtitle">Subtitle</div>
+                                                    <div class="item-text">Details</div>
+                                                </div>
+                                            </div>
+                                        </li>                      
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="page-content upage-content content-area" id="page_78_87">blabla
-                            <div class="widget scale-image uib_w_4 d-margins" data-uib="media/img" data-ver="0">
-                                <figure class="figure-align">
-                                    <img src="images/Strabburg.jpg" id="IMAGE">
-                                    <figcaption data-position="bottom"></figcaption>
-                                </figure>
-                            </div><a class="button widget uib_w_4" data-uib="framework7/button" data-ver="0" onclick="capturePhoto('.uib_w_4 img')">Camera button2</a>
-                        </div>
+   
                     </div>
-
                 </div>
-            </div>
+                
+               <div class="toolbar tabbar inner-element uib_w_5 d-margins" data-uib="framework7/tab_bar" data-ver="0">
+                    <div class="toolbar-inner">
+                        <a href="#" class="tab-link widget uib_w_6 active padding" data-uib="framework7/tab" data-ver="0">
+                            <span class="tabbar-label">Events</span>
+                            <i class="icon-bars icon" data-position="left"></i>
+                        </a>                                                        
+                    </div>
+                </div>
+                
+            </div> <!-- end first view -->
+            
         </div>
         <script type="application/javascript" src="framework7/my-app.js"></script>
     </body>

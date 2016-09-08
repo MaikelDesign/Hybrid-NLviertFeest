@@ -42,3 +42,36 @@ body {
     background: white ;
     color: black ;
 }
+
+
+.cu-no-margin{
+	margin: 0px !important;
+}
+
+div[class*="col-"] {
+  background: #fff;
+  text-align: center;
+  color: #000;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+    
+
+.cu-bottom{
+	bottom: 0;
+	position: absolute;
+	left: 0;
+	right:0;
+}
+
+.cu-no-padding{
+	padding: 0;
+}
+
+.cu-extra-info, .cu-maps{
+	height: 25vh;
+}
+
+.page[data-page="event"] .page-content{
+	background-color: blue !important;
+}

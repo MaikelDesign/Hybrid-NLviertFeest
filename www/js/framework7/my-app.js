@@ -11,28 +11,15 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-var eventView = myApp.addView('.view-event', {
-	domCache: true
-})
 
 // Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('event', function (page) {
+myApp.onPageInit('about', function (page) {
     "use strict";
-
-	myApp.hideToolbar();
-	
     // run createContentPage func after link was clicked
     $$('.create-page').on('click', function () {
         createContentPage();
     });
 });
-
-myApp.onPageInit('home', function (page) {
-	
-    alert('home is loaded!');
-});
-
-
 
 // Generate dynamic page
 var dynamicPageIndex = 0;
