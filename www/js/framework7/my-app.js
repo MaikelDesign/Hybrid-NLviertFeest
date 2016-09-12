@@ -1,6 +1,12 @@
 /*global Framework7, Dom7 */
 // Initialize your app
-var myApp = new Framework7();
+var myApp = new Framework7({
+
+//// 	Settings for app: 
+
+// 	pushState: true,
+	
+});
 
 // Export selectors engine
 var $$ = Dom7;
@@ -8,25 +14,28 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
+    dynamicNavbar: true,
+    domCache: true,
+});
+
+$$(document).on('pageInit', function(e){
+
+	var page = e.detail.page;
+	if(page.name === 'event')
+	{	
+		$$(page.document).find('.page-content').append('<p>test 123</p>');
+	}
+	
+// 	eventView.router.loadContent($$('#test').html());
+	
 });
 
 
-// Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('about', function (page) {
-    "use strict";
-    // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
-        createContentPage();
-    });
-});
+// Add view
+// var eventView = myApp.addView('.view-event');
 
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
-  "use strict";
-  mainView.router.loadContent(
-        '<!-- Top Navbar-->' +
+var newPageContent =   
+		'<!-- Top Navbar-->' +
         '<div class="navbar">' +
         '  <div class="navbar-inner">' +
         '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
@@ -35,7 +44,7 @@ function createContentPage() {
         '</div>' +
         '<div class="pages">' +
         '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
+        '  <div data-page="dynamic-page" class="page">' +
         '    <!-- Scrollable page content-->' +
         '    <div class="page-content">' +
         '      <div class="content-block">' +
@@ -46,7 +55,11 @@ function createContentPage() {
         '      </div>' +
         '    </div>' +
         '  </div>' +
-        '</div>'
-    );
-  return;
-}
+        '</div>';
+
+
+
+
+
+
+

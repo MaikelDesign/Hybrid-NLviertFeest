@@ -11,13 +11,18 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+/*
 var eventView = myApp.addView('.view-event', {
 	domCache: true
 })
+*/
 
 // Callbacks to run specific code for specific pages, for example for About page:
+/*
 myApp.onPageInit('event', function (page) {
     "use strict";
+
+	console.log('event loaded');
 
 	myApp.hideToolbar();
 	
@@ -26,12 +31,26 @@ myApp.onPageInit('event', function (page) {
         createContentPage();
     });
 });
+*/
 
-myApp.onPageInit('home', function (page) {
-	
-    alert('home is loaded!');
+$$(document).on('pageInit', function (e) {
+  
+  // Get page data from event data
+  var page = e.detail.page;
+
+  if (page.name === 'index') {
+    // Following code will be executed for page with data-page attribute equal to "event"
+    myApp.alert('Here comes index page');
+    
+  }
+  
+  if (page.name === 'event') {
+    // Following code will be executed for page with data-page attribute equal to "event"
+    myApp.alert('Here comes event page');
+    
+  }
+  
 });
-
 
 
 // Generate dynamic page
