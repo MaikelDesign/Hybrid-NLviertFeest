@@ -98,28 +98,7 @@
                             <div class="widget uib_w_7 d-margins" data-uib="framework7/list_block" data-ver="0">
                                 <div class="list-block cu-no-margin">
                                     <ul class="cu-events">
-<<<<<<< HEAD
-                                        <li class="media-item widget uib_w_11 d-margins" data-uib="framework7/media_item" data-ver="0">
-                                        	<a href="#" id="event">
-	                                            <div class="item-content">
-	                                                <div class="item-media">
-	                                                    <img src="images/Strabburg.jpg" height="80">
-	                                                </div>
-	                                                <div class="item-inner">
-	                                                    <div class="item-title-row">
-	                                                        <div class="item-title">Item title</div>
-	                                                        <div class="item-after">Label</div>
-	                                                    </div>
-	                                                    <div class="item-subtitle">Subtitle</div>
-	                                                    <div class="item-text">Details</div>
-	                                                </div>
-	                                            </div>
-                                        	</a>    
-                                        </li>
-                                                 
-=======
 	                                    <!-- List items -->     
->>>>>>> e747fb6fec494e486fae673f583dd63bdbc0c654
                                     </ul>
                                 </div>
                             </div>
@@ -142,11 +121,22 @@
             </div> <!-- end first view -->
             
         </div> <!-- end views -->
-        <script type="application/javascript" src="framework7/my-app.js"></script>
-        <script type="application/javascript" src="framework7/moments.js"></script>
         <script>
+	        function getJsonData() {
+	$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
+		
+		for(var i in json.events) {
+			var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
+			
+		    $$('ul.cu-events').append("<li class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'> <div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+		}
+	});	
+}
 	    	getJsonData();
 	    </script>
+        <script type="application/javascript" src="framework7/my-app.js"></script>
+        <script type="application/javascript" src="framework7/moments.js"></script>
+    
     </body>
 
 </html>
