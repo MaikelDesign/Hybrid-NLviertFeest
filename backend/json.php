@@ -36,41 +36,94 @@
 		        $row_array['id'] = $row['idnr'];
 		        $event_id = $row['idnr'];
 		        $row_array['name'] = $row['name'];
+		        
+		        // Event type
+		        if ($row['multiple_days'] == 0) {
+			        $multiple_days = false;
+		        } else {
+			        $multiple_days = true;
+		        }
+		        
+		        // Event details
+		        $row_array['multiple_days'] = $multiple_days;
 		        $row_array['timestamp_b'] = $row['timestamp_b'];
 		        $row_array['timestamp_e'] = $row['timestamp_e'];
+
+		        if ($row['endtime'] == 0) {
+			        $$event_endtime = false;
+		        } else {
+			        $event_endtime = true;
+		        }
+		        $row_array['endtime'] = $event_endtime;
+		        
 		        $row_array['description'] = $row['description'];
+		        $row_array['genre'] = $row['genre'];
+		        $row_array['min_age'] = $row['min_age'];
+		        $row_array['dresscode'] = $row['dresscode'];
 		        $row_array['facebook'] = $row['facebook'];
 				
 				// Child items: Location
-				// TODO: connect with partner
-				$row_array_location['company'] = $row['idnr_partner'];
-				if ($row['address'] == "") {
-					$row_array_location['address'] = "empty";
-					$row_array_location['zipcode'] = "empty";
-					$row_array_location['place'] = "empty";
-				} else {
+				$partner_id = $row['idnr_partner'];
+				$sql_partner = "SELECT * FROM partners WHERE `idnr` = '$partner_id'";
+				$result_partner = mysqli_query($db, $sql_partner);
+				
+				$row_partner = mysqli_fetch_array($result_partner, MYSQL_ASSOC);
+				
+				$row_array_location['partner_id'] = $partner_id;
+				
+				if ($partner_id == 0) {
+					$row_array_location['name'] = $row['location'];
 					$row_array_location['address'] = $row['address'];
 					$row_array_location['zipcode'] = $row['zipcode'];
 					$row_array_location['place'] = $row['place'];
+					
+					$row_array['location_details'] = $row_array_location;
+				} else {
+					$row_array_location['name'] = $row_partner['name'];
+					$row_array_location['address'] = $row_partner['address'];
+					$row_array_location['zipcode'] = $row_partner['zipcode'];
+					$row_array_location['place'] = $row_partner['place'];
+					$row_array_location['website'] = $row_partner['website'];
+					$row_array_location['twitter'] = $row_partner['twitter'];
+					$row_array_location['facebook'] = $row_partner['facebook'];
+					$row_array_location['description'] = $row_partner['description'];
+					$row_array_location['visiting_hours'] = $row_partner['visiting_hours'];
+					
+					$row_array['location_details'] = $row_array_location;
 				}
-				$row_array['location_details'] = $row_array_location;
+				
+				$row_array_location = [];
+				
 				// Get images from event
 				$sql_image = "SELECT * FROM images WHERE `idnr_event` = '$event_id'";
 				$result_image = mysqli_query($db, $sql_image);
 				
-				//Creat an array
 				$image_urls = array();
 				
 				while ($row_image = mysqli_fetch_array($result_image, MYSQL_ASSOC)) {
-					$row_array_image = $row_image['filename_time'];
+					$row_array_image = 'http://www.veldhovenviertfeest.nl/' . $row_image['filename_time'];
 					array_push($image_urls, $row_array_image);
 					$image_urls['$row_array_image'];
-					//echo "$row_image['filename_time']";
 				}
 				$row_array['images'] = $image_urls;
 				
+				// Event tickets
+				if ($row['tickets'] == 0) {
+					$ticket_option = false;
+		        } else {
+			        $ticket_option = true;
+		        
+					$row_array_ticket['url'] = $row['ticketlink'];
+					$row_array_ticket['tp_early'] = $row['tp_early'];
+					$row_array_ticket['tp_regular'] = $row['tp_regular'];
+					$row_array_ticket['tp_door'] = $row['tp_door'];
+					
+					$row_array['ticket_info'] = $row_array_ticket;
+		        }
+		        
+		        $row_array['ticket_option'] = $ticket_option;
 				
-		        //push the values in the array
+		        // Push the values in the array
 		        array_push($json_response,$row_array);
 		    }
 		    echo "{ \"events\" : ";
