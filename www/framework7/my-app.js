@@ -15,69 +15,62 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-var eventView = myApp.addView('.view-event');
-
-// Callbacks to run specific code for specific pages, for example for About page:
-/*
-myApp.onPageInit('event', function (page) {
-    "use strict";
-
-	console.log('event loaded');
-
-	myApp.hideToolbar();
-	
-    // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
-        createContentPage();
-    });
-});
-*/
-
 myApp.onPageInit('index', function (page) {
 
-	createIndexPage();
+// 	createIndexPage();
 
 }).trigger();
 
+// Event page content and settings
+function createEventContent(image, name, startDate, endDate, description){ 
+	mainView.router.load({
+		content:'<div class="page no-toolbar navbar-fixed" data-page="event">'+
+				'	<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">'+
+				'		<div class="navbar-inner">'+
+				'			<div class="left">'+
+				'		    	<div class="widget-container content-area horiz-area wrapping-col"></div>'+
+				'				<div class="left">'+
+				'		 			<a href="#" class="back" data-view=".view-main"> Back </a>'+
+				'		        </div>'+
+				'            </div>'+
+				'	         <div class="center labeltext">Event // dynamic //</div>'+
+				'	         <div class="right">'+
+				'  	            <div class="widget-container content-area horiz-area wrapping-col"></div>'+
+				'	         </div>'+
+				'	    </div>'+
+				'	</div>'+
+				'	<div class="page-content" style="background: url(' + image + ')" >'+
+				' 		<p>' + name + '</p>'+
+				' 		<p>' + startDate + '</p>'+
+				' 		<p>' + endDate + '</p>'+
+				'	    <div class="content-block cu-bottom cu-no-margin cu-no-padding">'+
+				'	    	<div class="row no-gutter">'+
+				'	            <div class="col-50 cu-extra-info">' + description + '</div>'+
+				'	            <div class="col-50 cu-maps"></div>'+
+				'	      	</div>'+
+				'	    </div>'+
+				'	</div>'+
+				'</div>',
+		animatePages: true
+	});
+	return;	
+};
 
-$$(document).on('pageInit', function (e) {
-  
-  // Get page data from event data
-  var page = e.detail.page;
-  
-  if (page.name === 'event') {
-    // Following code will be executed for page with data-page attribute equal to "event"
-    createEventPage();
-  }
-  
+$$('#event').click(function(e){
+	e.preventDefault();
+/*
+	// init var for function:	
+	var image = $(this).find('img').attr('src');
+	var name = $(this).find('p.name').html();
+	var startDate = $(this).find('p.startDate').html();
+	var endDate = $(this).find('p.endDate').html();
+	var description = $(this).find('p.desc').html();
+*/
+	
+	createEventContent(image, name, startDate, endDate, description);	
 });
 
 
-function createEventPage() {
-  "use strict";
-  eventView.router.loadContent(
-        '<!-- Top Navbar-->' +
-        '<div class="navbar">' +
-        '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
-        '  </div>' +
-        '</div>' +
-        '<div class="pages">' +
-        '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
-        '    <!-- Scrollable page content-->' +
-        '    <div class="page-content">' +
-        '      <div class="content-block">' +
-        '        <div class="content-block-inner">' +
-        '          <p>Here is a event page created on ' + new Date() + ' !</p>' +
-        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
-        '        </div>' +
-        '      </div>' +
-        '    </div>' +
-        '  </div>' +
-        '</div>'
-    );
-  return;
-}
+
+
 

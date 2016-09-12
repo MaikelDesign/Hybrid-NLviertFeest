@@ -39,7 +39,7 @@
     <!-- see http://devgirl.org/2014/07/31/phonegap-developers-guid -->
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#000000"/>
-    <preference name="StatusBarStyle" value="lightcontent"/>
+    <preference name="StatusBarStyle" value="darkcontent"/>
 </platform>
 <platform name="android">
     <!-- below requires the splash screen plugin -->
