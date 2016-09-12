@@ -1,7 +1,7 @@
 <!-- That is all we have in event.html file -->
 
 
-<div class="view view-event right-view" >
+<div class="view view-event " >
 
 	<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">
         <div class="navbar-inner">

@@ -1,6 +1,10 @@
 /*global Framework7, Dom7 */
 // Initialize your app
-var myApp = new Framework7();
+var myApp = new Framework7({
+	
+	//app settings
+	
+});
 
 // Export selectors engine
 var $$ = Dom7;
@@ -11,11 +15,7 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-/*
-var eventView = myApp.addView('.view-event', {
-	domCache: true
-})
-*/
+var eventView = myApp.addView('.view-event');
 
 // Callbacks to run specific code for specific pages, for example for About page:
 /*
@@ -33,31 +33,29 @@ myApp.onPageInit('event', function (page) {
 });
 */
 
+myApp.onPageInit('index', function (page) {
+
+	createIndexPage();
+
+}).trigger();
+
+
 $$(document).on('pageInit', function (e) {
   
   // Get page data from event data
   var page = e.detail.page;
-
-  if (page.name === 'index') {
-    // Following code will be executed for page with data-page attribute equal to "event"
-    myApp.alert('Here comes index page');
-    
-  }
   
   if (page.name === 'event') {
     // Following code will be executed for page with data-page attribute equal to "event"
-    myApp.alert('Here comes event page');
-    
+    createEventPage();
   }
   
 });
 
 
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
+function createEventPage() {
   "use strict";
-  mainView.router.loadContent(
+  eventView.router.loadContent(
         '<!-- Top Navbar-->' +
         '<div class="navbar">' +
         '  <div class="navbar-inner">' +
@@ -72,7 +70,7 @@ function createContentPage() {
         '    <div class="page-content">' +
         '      <div class="content-block">' +
         '        <div class="content-block-inner">' +
-        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
+        '          <p>Here is a event page created on ' + new Date() + ' !</p>' +
         '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
         '        </div>' +
         '      </div>' +
@@ -82,3 +80,4 @@ function createContentPage() {
     );
   return;
 }
+
