@@ -81,3 +81,13 @@ function createEventPage() {
   return;
 }
 
+function getJsonData() {
+	$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
+		
+		for(var i in json.events) {
+			var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
+			
+		    $$('ul.cu-events').append("<li class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='event.php'> <div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+		}
+	});	
+}
