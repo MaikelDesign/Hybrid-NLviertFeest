@@ -22,7 +22,7 @@ myApp.onPageInit('index', function (page) {
 }).trigger();
 
 // Event page content and settings
-function createEventContent(name){ 
+function createEventContent(name, image, description){ 
 	mainView.router.load({
 		content:'<div class="page no-toolbar navbar-fixed" data-page="event">'+
 				'	<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">'+
@@ -33,19 +33,27 @@ function createEventContent(name){
 				'		 			<a href="#" class="back" data-view=".view-main"> Back </a>'+
 				'		        </div>'+
 				'            </div>'+
-				'	         <div class="center labeltext">Event // dynamic //</div>'+
+				'	         <div class="center labeltext">' + name + '</div>'+
 				'	         <div class="right">'+
 				'  	            <div class="widget-container content-area horiz-area wrapping-col"></div>'+
 				'	         </div>'+
 				'	    </div>'+
 				'	</div>'+
-				'	<div class="page-content" style="background: url()" >'+
-				' 		<p>' + name + '</p>'+
-				' 		<p></p>'+
-				' 		<p></p>'+
+				'	<div class="page-content bg-img" style="background: url('+ image +') no-repeat center center fixed; background-size: cover;" >'+
 				'	    <div class="content-block cu-bottom cu-no-margin cu-no-padding">'+
+				'			<div class="row no-gutter">'+
+				'				<div class="col-50 cu-short-info">'+
+				' 					<ul>'+
+				'						<li class="listHeader">Locatie</li>'+				
+				'						<li>Tijd</li>'+				
+				'						<li>Entree</li>'+				
+				'						<li>Aanwezigheid</li>'+				
+				'					</ul>'+					
+				'				</div>'+
+				'				<div class="col-50 cu-friends-info"></div>'+
+				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
-				'	            <div class="col-50 cu-extra-info">' + /* description */ + '</div>'+
+				'	            <div class="col-50 cu-extra-info">' + description + '</div>'+
 				'	            <div class="col-50 cu-maps"></div>'+
 				'	      	</div>'+
 				'	    </div>'+
@@ -58,16 +66,52 @@ function createEventContent(name){
 
 $$(document.body).on('click', '#event',function(e){
 	e.preventDefault();
-	console.log('test');
-/*
+	
 	// init var for function:	
-	var image = $(this).find('img').attr('src'); */
+	var image = $(this).find('img').attr('src');
 	var name = $(this).find('div.item-title').html();
-/*	var startDate = $(this).find('p.startDate').html();
-	var endDate = $(this).find('p.endDate').html();
-	var description = $(this).find('p.desc').html();
-*/
-	createEventContent(name);	
+// 	var startDate = $(this).find('p.startDate').html();
+// 	var endDate = $(this).find('p.endDate').html();
+	var description = $(this).find('div.item-text').html();
+
+	createEventContent(name, image, description);	
+	
+	// function for read more text
+	// @ if: check content length
+	$(function(){
+		
+		var max_length = 150;
+		var cuExtraInfo = $$('.cu-extra-info');
+
+
+		if(cuExtraInfo.html().length > max_length){ 
+		
+			console.log('text is longer');
+			
+			// split content in two parts
+			var short_content 	= cuExtraInfo.html().substr(0,max_length); 
+			var long_content	= cuExtraInfo.html().substr(max_length);
+			
+			// create the read more button
+			cuExtraInfo.html(short_content+ 
+						 '<a href="#" class="read_more"><br/>Read More</a>'+
+						 '<span class="more_text" style="display:none;">'+long_content+'</span>'); 
+						 
+			// find a.read_more and show other part of content.
+			// - hide read more btn
+			// - show other part of content
+			cuExtraInfo.find('a.read_more').click(function(event){ 
+ 
+				event.preventDefault(); 
+				$(this).hide(); 
+				$(this).parents('.cu-extra-info').find('.more_text').show(); 
+		 
+			});			
+		}
+		
+		
+	});
+
 });
 
 
@@ -81,3 +125,5 @@ function getJsonData() {
 		}
 	});	
 }
+
+		
