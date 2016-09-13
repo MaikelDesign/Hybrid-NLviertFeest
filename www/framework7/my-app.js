@@ -12,7 +12,8 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
+    dynamicNavbar: true,
+    domCache: true
 });
 
 myApp.onPageInit('index', function (page) {
@@ -23,6 +24,12 @@ myApp.onPageInit('index', function (page) {
 
 // Event page content and settings
 function createEventContent(name, image, description){ 
+	
+	// check if name exists
+	if(name == null){
+		name = "Nederland Viert Feest";
+	}
+	
 	mainView.router.load({
 		content:'<div class="page no-toolbar navbar-fixed" data-page="event">'+
 				'	<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">'+
@@ -32,8 +39,8 @@ function createEventContent(name, image, description){
 				'				<div class="left">'+
 				'		 			<a href="#" class="back" data-view=".view-main"> Back </a>'+
 				'		        </div>'+
-				'            </div>'+
-				'	         <div class="center labeltext">' + name + '</div>'+
+				'            </div>' +
+				'			 <div class="center labeltext">' + name + '</div>' +
 				'	         <div class="right">'+
 				'  	            <div class="widget-container content-area horiz-area wrapping-col"></div>'+
 				'	         </div>'+
