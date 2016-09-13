@@ -22,7 +22,7 @@ myApp.onPageInit('index', function (page) {
 }).trigger();
 
 // Event page content and settings
-function createEventContent(){ 
+function createEventContent(name){ 
 	mainView.router.load({
 		content:'<div class="page no-toolbar navbar-fixed" data-page="event">'+
 				'	<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">'+
@@ -39,10 +39,10 @@ function createEventContent(){
 				'	         </div>'+
 				'	    </div>'+
 				'	</div>'+
-				'	<div class="page-content" style="background: url(' + /* image */ + ')" >'+
-				' 		<p>' + /* name */ + '</p>'+
-				' 		<p>' + /* startDate */ + '</p>'+
-				' 		<p>' + /* endDate */ + '</p>'+
+				'	<div class="page-content" style="background: url()" >'+
+				' 		<p>' + name + '</p>'+
+				' 		<p></p>'+
+				' 		<p></p>'+
 				'	    <div class="content-block cu-bottom cu-no-margin cu-no-padding">'+
 				'	    	<div class="row no-gutter">'+
 				'	            <div class="col-50 cu-extra-info">' + /* description */ + '</div>'+
@@ -61,13 +61,13 @@ $$(document.body).on('click', '#event',function(e){
 	console.log('test');
 /*
 	// init var for function:	
-	var image = $(this).find('img').attr('src');
-	var name = $(this).find('p.name').html();
-	var startDate = $(this).find('p.startDate').html();
+	var image = $(this).find('img').attr('src'); */
+	var name = $(this).find('div.item-title').html();
+/*	var startDate = $(this).find('p.startDate').html();
 	var endDate = $(this).find('p.endDate').html();
 	var description = $(this).find('p.desc').html();
 */
-	createEventContent();	
+	createEventContent(name);	
 });
 
 
