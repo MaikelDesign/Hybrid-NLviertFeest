@@ -6,7 +6,11 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "0ff2aa07-cb40-4a9a-a525-0ccc0c0b1629",
+<<<<<<< HEAD
       "lastModifiedDate": 1473848834135,
+=======
+      "lastModifiedDate": 1473861177168,
+>>>>>>> 3bc5918e779c097bfa49163f69e5f480732bb6fb
       "creationDate": 1473246003735
     },
     "XDK-app-designer": "true",
@@ -197,15 +201,21 @@
         "runtime_": "Cordova 3.x",
         "name_": "iOS",
         "preferences_": {
+<<<<<<< HEAD
           "ios-configuration": "adhoc",
           "deployment-target": "8.0",
           "Fullscreen": true,
           "exit-on-suspend": false
+=======
+          "ios-configuration": "production",
+          "deployment-target": "8.0",
+          "Orientation": "portrait"
+>>>>>>> 3bc5918e779c097bfa49163f69e5f480732bb6fb
         },
         "isActive_": true,
-        "certificateId_": "",
-        "appName_": "F7",
-        "appID_": "xdk.intel.blank.ad.template",
+        "certificateId_": "AC0eeHpBp0Wne1FNM8hUtw2",
+        "appName_": "Nederland viert Feest",
+        "appID_": "nl.fressh.nlviertfeest",
         "appAccess_": {
           "mode": "whitelist",
           "network": [
@@ -228,12 +238,22 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "iosProvs_": [],
+        "iosProvs_": [
+          {
+            "relPath": "package-assets/NL_viert_Feest.mobileprovision",
+            "type": "production"
+          },
+          {
+            "relPath": "package-assets/NL_viert_Feest_ad_hoc.mobileprovision",
+            "type": "adhoc"
+          }
+        ],
         "cordovaCLIVersion_": "6.2.0",
         "crosswalkVersion_": "19",
-        "appVersion_": "0.0.1",
-        "appAuthor_": "Intel XDK",
-        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor."
+        "appVersion_": "0.1",
+        "appAuthor_": "Seven Stars",
+        "appDescription_": "App om evenementen in de buurt bij te houden",
+        "appVersionCode_": "1"
       },
       "Windows8": {
         "platform_": "windows8",

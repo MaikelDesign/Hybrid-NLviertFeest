@@ -57,7 +57,15 @@ function createEventContent(name, image, description){
 				'						<li>Aanwezigheid</li>'+				
 				'					</ul>'+					
 				'				</div>'+
-				'				<div class="col-50 cu-friends-info"></div>'+
+				'				<div class="col-50 cu-friends-info">' +
+				'					<div class="widget scale-image uib_w_8 d-margins" data-uib="media/img" data-ver="0">' +
+				'						<figure class="figure-align">' +
+				'							<img src="images/Strabburg.jpg" width="100px" height="100px" id="IMAGE">' +
+				'							<figcaption data-position="bottom"></figcaption>' +
+				'						</figure>' +
+				'					</div>' +
+				'					<a class="button widget uib_w_8" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\')">Camera</a>' +
+				'				</div>'+
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
 				'	            <div class="col-50 cu-extra-info" >' + description + '</div>'+
