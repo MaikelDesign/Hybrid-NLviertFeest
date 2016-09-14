@@ -21,6 +21,7 @@
 <intelxdk:plugin intelxdk:name="Splashscreen" intelxdk:value="cordova-plugin-splashscreen" intelxdk:version="3.2.2" intelxdk:checksum="47137083" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Camera" intelxdk:value="cordova-plugin-camera" intelxdk:version="2.2.0" intelxdk:checksum="ec9311a8" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Compat" intelxdk:value="cordova-plugin-compat" intelxdk:version="1.0.0" intelxdk:checksum="61c62eb" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="Geolocation" intelxdk:value="cordova-plugin-geolocation" intelxdk:version="2.2.0" intelxdk:checksum="ec466374" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Cordova Network Whitelist Plugin (added by Intel XDK)" intelxdk:value="cordova-plugin-whitelist" intelxdk:version="1.2.2"/>
 <preference name="android-minSdkVersion" value="14"/>
 <preference name="android-targetSdkVersion" value="21"/>

@@ -67,6 +67,15 @@ div[class*="col-"] {
 	padding: 0;
 }
 
+
+
+/* ////////////////////////////////////////////////////////////////////
+	
+							EVENT DETAIL VIEW
+	
+//////////////////////////////////////////////////////////////////// */
+
+
 .cu-short-info{
 	height: 25vh;
 	background-color: rgba(0,0,0,0) !important; 
@@ -108,5 +117,21 @@ div[class*="col-"] {
 	opacity: .6; 
 }
 
+/* ////////////////////////////////////////////////////////////////////
+	
+							MAP CANVAS
+	
+//////////////////////////////////////////////////////////////////// */
+
+.cu-maps{
+	padding: 0px;
+}
+
+.gmnoprint a, .gmnoprint span {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
 
 

@@ -34,7 +34,13 @@
                 @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
                 /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
         </style>
-
+<style>
+            html, body, #map_canvas {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            }
+        </style>
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
@@ -67,6 +73,7 @@
         <script type="application/javascript" src="framework7/js/framework7.min.js"></script>
         <script type="application/javascript" src="camera/cordova-cam.js"></script>
         <script type="application/javascript" src="js/pull-to-refresh.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDolEFOXA2OGZ0OGkrRFSEBU-Aoh0vU_KY&sensor=true" type="text/javascript"></script>
     </head>
 
     <body>
@@ -94,10 +101,11 @@
                     <div class="page navbar-fixed" data-page="index">
                                                
                         <div class="page-content upage-content content-area hide-tabbar-on-scroll pull-to-refresh-content" id="page_78_87" data-ptr-distance="44">
-
+													
                             <div class="widget uib_w_7 d-margins" data-uib="framework7/list_block" data-ver="0">
                                 <div class="list-block cu-no-margin">
                                     <ul class="cu-events">
+
 	                                    <!-- List items -->     
                                     </ul>
                                 </div>
@@ -136,6 +144,7 @@
 	    </script>
         <script type="application/javascript" src="framework7/my-app.js"></script>
         <script type="application/javascript" src="framework7/moments.js"></script>
+<script src="http://debug-software.intel.com/target/target-script-min.js#QoZYbK5OnPWPooZBexBXNW1_UH53ykmfyLgT2fH9vEc"></script>
     
     </body>
 

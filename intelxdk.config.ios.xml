@@ -22,8 +22,11 @@
 <intelxdk:plugin intelxdk:name="Splashscreen" intelxdk:value="cordova-plugin-splashscreen" intelxdk:version="3.2.2" intelxdk:checksum="47137083" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Camera" intelxdk:value="cordova-plugin-camera" intelxdk:version="2.2.0" intelxdk:checksum="ec9311a8" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Compat" intelxdk:value="cordova-plugin-compat" intelxdk:version="1.0.0" intelxdk:checksum="61c62eb" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="Geolocation" intelxdk:value="cordova-plugin-geolocation" intelxdk:version="2.2.0" intelxdk:checksum="ec466374" intelxdk:type="file"/>
 <preference name="ios-configuration" value="adhoc"/>
 <preference name="deployment-target" value="8.0"/>
+<preference name="Fullscreen" value="true"/>
+<preference name="exit-on-suspend" value="false"/>
 <!--creationInfo:{"src":"jsapp/template-blank-cordova-ad-project/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}-->
 <preference name="debuggable" value="false"/>
 <platform name="ios">

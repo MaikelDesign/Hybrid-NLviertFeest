@@ -60,8 +60,8 @@ function createEventContent(name, image, description){
 				'				<div class="col-50 cu-friends-info"></div>'+
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
-				'	            <div class="col-50 cu-extra-info">' + description + '</div>'+
-				'	            <div class="col-50 cu-maps"></div>'+
+				'	            <div class="col-50 cu-extra-info" >' + description + '</div>'+
+				'	            <div class="col-50 cu-maps" ><div id="map_canvas" style="padding: 0;"></div></div>'+
 				'	      	</div>'+
 				'	    </div>'+
 				'	</div>'+
@@ -70,6 +70,7 @@ function createEventContent(name, image, description){
 	});
 	return;	
 };
+
 
 $$(document.body).on('click', '#event',function(e){
 	e.preventDefault();
@@ -83,6 +84,7 @@ $$(document.body).on('click', '#event',function(e){
 
 	createEventContent(name, image, description);	
 	
+	
 	// function for read more text
 	// @ if: check content length
 	$(function(){
@@ -92,9 +94,7 @@ $$(document.body).on('click', '#event',function(e){
 
 
 		if(cuExtraInfo.html().length > max_length){ 
-		
-			console.log('text is longer');
-			
+					
 			// split content in two parts
 			var short_content 	= cuExtraInfo.html().substr(0,max_length); 
 			var long_content	= cuExtraInfo.html().substr(max_length);
@@ -116,11 +116,62 @@ $$(document.body).on('click', '#event',function(e){
 			});			
 		}
 		
-		
 	});
+
+	// execute maps
+	mapReady();
 
 });
 
+
+// setup maps 
+function mapReady(){
+	
+	// Map functionality
+/* 	document.addEventListener("deviceReady", onDeviceReady, false); */
+
+// 	function onDeviceReady(){
+// 		(succes function, error function, options{cached location between now and 5 min. old., time to search available position, using GPS chip})
+		navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:300000, timeout:5000, enableHighAccuracy: true});
+// 	}
+
+	
+	function onSuccess(position){
+		lat = position.coords.latitude;
+		lng = position.coords.longitude;
+// 		myApp.alert("getpos: " + lat + ", " + lng);
+		initialize(lat, lng);
+	}
+
+
+	function onError(error){
+		myApp.alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	}
+	
+	// map initializer function
+	function initialize(lat, lng){
+		
+		var mapOptions = {
+		    zoom: 11,
+		    center: new google.maps.LatLng(lat, lng),
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+		var map = new google.maps.Map(document.getElementById('map_canvas'),mapOptions);
+		
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(lat, lng),
+			animation: google.maps.Animation.DROP
+		});
+		marker.setMap(map);
+		
+	}
+	
+}
+
+
+	     
+/* 	    google.maps.event.addDomListener(window, 'load', initialize); */
 
 function getJsonData() {
 	$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {

@@ -18,6 +18,9 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "HelloCordova"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "HelloCordova"
         }
     },
     "dependent_plugins": {

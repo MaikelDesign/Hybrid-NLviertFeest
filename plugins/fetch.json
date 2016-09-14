@@ -38,5 +38,13 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "cordova-plugin-geolocation": {
+        "source": {
+            "type": "local",
+            "path": "/Applications/Intel XDK.app/Contents/Resources/app.nw/components/server/cordova/cordova-plugins/cordova-plugin-geolocation"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
