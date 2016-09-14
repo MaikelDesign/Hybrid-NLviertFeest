@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "0ff2aa07-cb40-4a9a-a525-0ccc0c0b1629",
-      "lastModifiedDate": 1473850653611,
+      "lastModifiedDate": 1473861177168,
       "creationDate": 1473246003735
     },
     "XDK-app-designer": "true",
@@ -216,7 +216,8 @@
         "crosswalkVersion_": "19",
         "appVersion_": "0.1",
         "appAuthor_": "Seven Stars",
-        "appDescription_": "App om evenementen in de buurt bij te houden"
+        "appDescription_": "App om evenementen in de buurt bij te houden",
+        "appVersionCode_": "1"
       },
       "Windows8": {
         "platform_": "windows8",

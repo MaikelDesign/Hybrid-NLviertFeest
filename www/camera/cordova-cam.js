@@ -19,6 +19,7 @@ var destinationType; // sets the format of returned value
 var imageID;
 
 
+
 // Cordova is ready to be used!
 function onDeviceReady() {
     if (!navigator.camera) {
@@ -85,7 +86,6 @@ function captureAndSavePhoto(uib_id) {
   navigator.camera.getPicture(onPhotoDataSuccess, onFail, cameraOptions);
 }
 window.captureAndSavePhoto = captureAndSavePhoto;
-
 
 // A button will call this function
 function capturePhotoEdit(uib_id) {
