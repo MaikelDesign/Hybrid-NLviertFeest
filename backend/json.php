@@ -101,7 +101,8 @@
 				$image_urls = array();
 				
 				while ($row_image = mysqli_fetch_array($result_image, MYSQL_ASSOC)) {
-					$row_array_image = 'http://www.veldhovenviertfeest.nl/' . $row_image['filename_time'];
+					$image_encode = str_replace(' ', '%20', $row_image['filename_time']);
+					$row_array_image = 'http://www.veldhovenviertfeest.nl/' . $image_encode;
 					array_push($image_urls, $row_array_image);
 					$image_urls['$row_array_image'];
 				}
