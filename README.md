@@ -1,29 +1,16 @@
-# README TODO #
+# README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+With this application we want to make a clear overview with all events within the city. This is a aggrandizement of the current website www.veldhovenviertfeest.nl
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Hybrid app progress (Framework7.io)
+* Backend realisation (MySQL / PHP / JSON)
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* The source code remains at all times the property of Maikel Verbeek & Ruben Sissing
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Repo admin (Maikel Verbeek or Ruben Sissing)
