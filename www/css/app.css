@@ -75,7 +75,7 @@ div[class*="col-"] {
 	
 //////////////////////////////////////////////////////////////////// */
 
-
+/* Short info */
 .cu-short-info{
 	height: 25vh;
 	background-color: rgba(0,0,0,0) !important; 
@@ -95,6 +95,29 @@ div[class*="col-"] {
 }
 
 .cu-short-info .listHeader{
+	font-size: 1.4em;
+}
+
+/* Friend / photo info */
+.cu-friends-info{
+	height: 25vh;
+	background-color: rgba(0,0,0,0) !important; 
+	border: none !important;
+	color: white;
+}
+
+.cu-friends-info ul{
+	list-style: none;
+	text-align: left;
+	-webkit-padding-start: 20px;
+}
+
+.cu-friends-info li{
+	color: white;
+	margin-bottom: 1vh;
+}
+
+.cu-friends-info .listHeader{
 	font-size: 1.4em;
 }
 

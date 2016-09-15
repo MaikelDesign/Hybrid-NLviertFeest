@@ -22,19 +22,16 @@
 <intelxdk:plugin intelxdk:name="Splashscreen" intelxdk:value="cordova-plugin-splashscreen" intelxdk:version="3.2.2" intelxdk:checksum="47137083" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Camera" intelxdk:value="cordova-plugin-camera" intelxdk:version="2.2.0" intelxdk:checksum="ec9311a8" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Compat" intelxdk:value="cordova-plugin-compat" intelxdk:version="1.0.0" intelxdk:checksum="61c62eb" intelxdk:type="file"/>
-<<<<<<< HEAD
 <intelxdk:plugin intelxdk:name="Geolocation" intelxdk:value="cordova-plugin-geolocation" intelxdk:version="2.2.0" intelxdk:checksum="ec466374" intelxdk:type="file"/>
-<preference name="ios-configuration" value="adhoc"/>
-<preference name="deployment-target" value="8.0"/>
-<preference name="Fullscreen" value="true"/>
+<intelxdk:plugin intelxdk:name="File" intelxdk:value="cordova-plugin-file" intelxdk:version="4.2.0" intelxdk:checksum="1fdd7f27" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="File Transfer" intelxdk:value="cordova-plugin-file-transfer" intelxdk:version="1.5.1" intelxdk:checksum="dbdc1f18" intelxdk:type="file"/>
+<preference name="Fullscreen" value="false"/>
 <preference name="exit-on-suspend" value="false"/>
-=======
 <preference name="ios-configuration" value="production"/>
 <preference name="deployment-target" value="8.0"/>
 <platform name="ios">
 <preference name="Orientation" value="portrait"/></platform>
 <intelxdk:provisioning intelxdk:src="package-assets/NL_viert_Feest.mobileprovision" intelxdk:type="production"/>
->>>>>>> 3bc5918e779c097bfa49163f69e5f480732bb6fb
 <!--creationInfo:{"src":"jsapp/template-blank-cordova-ad-project/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}-->
 <preference name="debuggable" value="false"/>
 <platform name="ios">
