@@ -124,7 +124,11 @@ div[class*="col-"] {
 //////////////////////////////////////////////////////////////////// */
 
 .cu-maps{
-	padding: 0px;
+	padding: 0px !important;
+}
+
+#map_canvas{
+	height: 100%;
 }
 
 .gmnoprint a, .gmnoprint span {

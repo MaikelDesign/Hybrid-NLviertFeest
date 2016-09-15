@@ -69,7 +69,7 @@ function createEventContent(name, image, description){
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
 				'	            <div class="col-50 cu-extra-info" >' + description + '</div>'+
-				'	            <div class="col-50 cu-maps" ><div id="map_canvas" style="padding: 0;"></div></div>'+
+				'	            <div class="col-50 cu-maps" style="padding: 0px" ><div id="map_canvas" width="100%" height="100%"></div></div>'+
 				'	      	</div>'+
 				'	    </div>'+
 				'	</div>'+
@@ -136,13 +136,7 @@ $$(document.body).on('click', '#event',function(e){
 function mapReady(){
 	
 	// Map functionality
-/* 	document.addEventListener("deviceReady", onDeviceReady, false); */
-
-// 	function onDeviceReady(){
-// 		(succes function, error function, options{cached location between now and 5 min. old., time to search available position, using GPS chip})
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:300000, timeout:5000, enableHighAccuracy: true});
-// 	}
-
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:300000, timeout:5000, enableHighAccuracy: true});
 	
 	function onSuccess(position){
 		lat = position.coords.latitude;
@@ -158,10 +152,11 @@ function mapReady(){
 	
 	// map initializer function
 	function initialize(lat, lng){
-		
+
 		var mapOptions = {
 		    zoom: 11,
 		    center: new google.maps.LatLng(lat, lng),
+// 		    center: new google.maps.LatLng(51.45174939038716, 5.482397856522782),
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		
@@ -171,6 +166,7 @@ function mapReady(){
 			position: new google.maps.LatLng(lat, lng),
 			animation: google.maps.Animation.DROP
 		});
+		
 		marker.setMap(map);
 		
 	}
