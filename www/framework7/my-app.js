@@ -230,19 +230,23 @@ function onCapturePhoto(fileURI) {
             alert('Ups. Something wrong happens!');
         }
     }
+    
+    var params = {};
+    params.eventId = 22;
  
     var options = new FileUploadOptions();
     options.fileKey = "file";
     options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
     options.mimeType = "image/jpeg";
-    options.params = {}; // if we need to send parameters to the server request
+    options.params = params; // if we need to send parameters to the server request
     var ft = new FileTransfer();
     ft.upload(fileURI, encodeURI("http://app.veldhovenviertfeest.nl/photo/upload.php"), win, fail, options);
 }
  
 function capturePhoto() {
     navigator.camera.getPicture(onCapturePhoto, onFail, {
-        quality: 50,
+        quality: 40,
+        correctOrientation: true,
         destinationType: destinationType.FILE_URI
     });
 }
