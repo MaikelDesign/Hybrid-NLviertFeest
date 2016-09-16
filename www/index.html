@@ -39,11 +39,6 @@
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
-
-        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
-        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-
         <!-- Recommended location for your JavaScript libraries -->
         <!-- These library references (below) are just examples to give you the general idea... -->
         <!-- <script src="lib/mc/hammer.js"></script> -->
@@ -71,9 +66,6 @@
     </head>
 
     <body>
-        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
-        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
         <div class="uwrap views">
             <div class="upage vertical-col left view-main view" id="mainpage">
 					
@@ -125,6 +117,7 @@
         </div> <!-- end views -->
         <script>
 	        
+/*
 	        function getJsonData() {
 
 				var obje;
@@ -162,6 +155,7 @@
 								"door" : json.events[i].ticket_info.tp_door
 							}
 */
+/*
 						};
 						
 					    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
@@ -169,7 +163,7 @@
 						
 					}
 
-					sessionStorage.myObject = JSON.stringify(obj);
+					localStorage.setItem("myObject", JSON.stringify(obj));
 					
 				});	
 
@@ -177,13 +171,13 @@
 			}
 			
 	    	getJsonData();
+*/
+
 	    	
 	    </script>
-        <script type="application/javascript" src="framework7/my-app.js"></script>
         <script type="application/javascript" src="framework7/moments.js"></script>
-        <!-- DELETE WHEN PUBLISHING!! -->
-<!-- 		<script src="http://debug-software.intel.com/target/target-script-min.js#QoZYbK5OnPWPooZBexBXNW1_UH53ykmfyLgT2fH9vEc"></script> -->
-		<script src="http://debug-software.intel.com/target/target-script-min.js#sUw8z2LeMzLv0IGdIIBUpZkpB0FxgiG7JeMc0n5l5jU"></script>
+        <script type="application/javascript" src="framework7/my-app.js"></script>
+
 	</body>
 
 </html>

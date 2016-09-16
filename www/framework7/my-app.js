@@ -21,9 +21,61 @@ myApp.onPageInit('index', function (page) {
 // 	createIndexPage();
 
 }).trigger();
+					var obj = {};
 
 
-var dataObject = JSON.parse(sessionStorage.myObject);
+ function getJsonData() {
+
+				var obje;
+				$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
+					
+
+					for(var i in json.events) {
+							
+							
+									
+						var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
+						var endDate = moment(json.events[i].timestamp_e * 1000).format("DD-MM-YYYY");
+			
+						var startTime = moment(json.events[i].timestamp_b * 1000).format("HH:MM");
+						var endTime = moment(json.events[i].timestamp_e * 1000).format("HH:MM");
+						
+						obj[i] = { 
+							"ID" : json.events[i].id,
+							"name" : json.events[i].name,
+							"multiple_days" : json.events[i].multiple_days,
+							"timestamp_b" : json.events[i].timestamp_b,
+							"timestamp_e" : json.events[i].timestamp_e,
+							"endtime" : json.events[i].endtime,
+							"description" : json.events[i].description,
+							"facebook" : json.events[i].facebook,
+							"location_name" : json.events[i].location_details.name,
+							"location_address" : json.events[i].location_details.address,
+							"location_zipcode" : json.events[i].location_details.zipcode,
+							"location_place" : json.events[i].location_details.place,
+							"image" : json.events[i].images[0],
+							"ticket_option" : json.events[i].ticket_option,
+/*
+							"ticket_info" : { 
+								"early" : json.events[i].ticket_info.tp_early,
+								"regular" : json.events[i].ticket_info.tp_regular,
+								"door" : json.events[i].ticket_info.tp_door
+							}
+*/
+						};
+						
+					    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+					    
+						 obje = obj;
+					}
+
+					
+				});	
+
+			}
+			
+	    	getJsonData();
+var dataObject = getJsonData();
 
 // Event page content and settings
 function createEventContent(name, image, description, location_name){ 
@@ -46,18 +98,18 @@ function createEventContent(name, image, description, location_name){
 				'					</a>'+
 				'		        </div>'+
 				'            </div>'+
-				'			 <div class="center labeltext">' + name + '</div>' +
+				'			 <div class="center labeltext">' + name  + '</div>' +
 				'	         <div class="right">'+
 				'  	            <div class="widget-container content-area horiz-area wrapping-col"></div>'+
 				'	         </div>'+
 				'	    </div>'+
 				'	</div>'+
-				'	<div class="page-content bg-img" style="background: url('+ image +') no-repeat center center fixed; background-size: cover;" >'+
+				'	<div class="page-content bg-img" style="background: url('+  image  +') no-repeat center center fixed; background-size: cover;" >'+
 				'	    <div class="content-block cu-bottom cu-no-margin cu-no-padding">'+
 				'			<div class="row no-gutter">'+
 				'				<div class="col-50 cu-short-info">'+
 				' 					<ul>'+
-				'						<li class="listHeader">' + location_name + '</li>'+				
+				'						<li class="listHeader">' +  location_name  + '</li>'+				
 				'						<li>Tijd</li>'+				
 				'						<li>Entree</li>'+				
 				'						<li>Aanwezigheid</li>'+				
@@ -74,7 +126,7 @@ function createEventContent(name, image, description, location_name){
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
 				'				<div class="col-50"></div>'+
-				'	            <div class="col-50 cu-extra-info" >' + description + '</div>'+
+				'	            <div class="col-50 cu-extra-info" >' +  description  + '</div>'+
 				'	            <div class="col-50 cu-maps" style="padding: 0px" ><div id="map_canvas" width="100%" height="100%"></div></div>'+
 				'	      	</div>'+
 				'	    </div>'+
@@ -115,11 +167,12 @@ $$(document.body).on('click', '#event',function(e){
 	 	
 	}
 
-	createEventContent(name, image, description, location_name);	
+	createEventContent( name, image, description, location_name );	
 	
 	
 	// function for read more text
 	// @ if: check content length
+/*
 	$(function(){
 		
 		var max_length = 80;
@@ -180,6 +233,7 @@ $$(document.body).on('click', '#event',function(e){
 		window.location.href = "http://maps.apple.com/?daddr="+location;
 	});
 	
+*/
 	
 });
 
@@ -246,19 +300,7 @@ function mapReady(location){
 	
 }
     
-/* 	    google.maps.event.addDomListener(window, 'load', initialize); */
-function getJsonData() {
-	
-	$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
 
-		for(var i in json.events) {
-						
-		    $$('ul.cu-events').append("<li class='media-item widget uib_w_11 d-margins'  data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'> <div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
-		}
-
-	});	
-
-}
 
 /***************************************
 *
