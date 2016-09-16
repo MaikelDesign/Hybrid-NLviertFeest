@@ -24,6 +24,7 @@
 <intelxdk:plugin intelxdk:name="Geolocation" intelxdk:value="cordova-plugin-geolocation" intelxdk:version="2.2.0" intelxdk:checksum="ec466374" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="File" intelxdk:value="cordova-plugin-file" intelxdk:version="4.2.0" intelxdk:checksum="1fdd7f27" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="File Transfer" intelxdk:value="cordova-plugin-file-transfer" intelxdk:version="1.5.1" intelxdk:checksum="dbdc1f18" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="InAppBrowser" intelxdk:value="cordova-plugin-inappbrowser" intelxdk:version="1.4.0" intelxdk:checksum="f88bc51f" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Cordova Network Whitelist Plugin (added by Intel XDK)" intelxdk:value="cordova-plugin-whitelist" intelxdk:version="1.2.2"/>
 <preference name="android-minSdkVersion" value="14"/>
 <preference name="android-targetSdkVersion" value="21"/>

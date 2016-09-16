@@ -227,7 +227,7 @@ $$(document.body).on('click', '#event',function(e){
 
 	$('.cu-maps').click(location, function(){
 		location = location.split(" ").join('+');
-		window.location.href = "http://maps.apple.com/?daddr="+location;
+		window.open("https://maps.apple.com/?daddr="+location, '_system');
 	});
 	
 	
