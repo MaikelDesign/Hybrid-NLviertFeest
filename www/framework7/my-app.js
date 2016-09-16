@@ -40,9 +40,12 @@ function createEventContent(name, image, description, location_name){
 				'			<div class="left">'+
 				'		    	<div class="widget-container content-area horiz-area wrapping-col"></div>'+
 				'				<div class="left">'+
-				'		 			<a href="#" class="back" data-view=".view-main"> Back </a>'+
+				'		 			<a href="#" class="link back" data-view=".view-main">'+
+				'						<i class="icon icon-back"></i>'+
+				'						<span>Back</span>'+
+				'					</a>'+
 				'		        </div>'+
-				'            </div>' +
+				'            </div>'+
 				'			 <div class="center labeltext">' + name + '</div>' +
 				'	         <div class="right">'+
 				'  	            <div class="widget-container content-area horiz-area wrapping-col"></div>'+
@@ -61,13 +64,12 @@ function createEventContent(name, image, description, location_name){
 				'					</ul>'+					
 				'				</div>'+
 				'				<div class="col-50 cu-friends-info">' +
-				'					<div class="widget scale-image uib_w_8 d-margins" data-uib="media/img" data-ver="0">' +
-				'						<figure class="figure-align">' +
-				'							<img src="images/Strabburg.jpg" width="100px" height="100px" id="IMAGE">' +
-				'							<figcaption data-position="bottom"></figcaption>' +
-				'						</figure>' +
-				'					</div>' +
-				'					<a class="button widget uib_w_8" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\')">Camera</a>' +
+				'					<ul>'+
+				'						<li class="listHeader">Vrienden</li>'+				
+				'						<li>Aanwezig</li>'+	
+				'						<li>Voeg foto toe</li>'+			
+				'					</ul>'+
+				'					<a class="button widget uib_w_8" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\')"><i class="icon icon-camera"></i></a>' +
 				'				</div>'+
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
@@ -258,3 +260,67 @@ function getJsonData() {
 
 }
 
+/***************************************
+*
+*	Picture upload
+*
+***************************************/
+
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+ 
+document.addEventListener("deviceready", onDeviceReady, false);
+ 
+function onDeviceReady() {
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
+}
+ 
+function clearCache() {
+    navigator.camera.cleanup();
+}
+ 
+var retries = 0;
+function onCapturePhoto(fileURI) {
+    var win = function (r) {
+        clearCache();
+        retries = 0;
+        alert('Done!');
+    }
+ 
+    var fail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                onCapturePhoto(fileURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+    var params = {};
+    params.eventId = 22;
+ 
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+    options.params = params; // if we need to send parameters to the server request
+    var ft = new FileTransfer();
+    ft.upload(fileURI, encodeURI("http://app.veldhovenviertfeest.nl/photo/upload.php"), win, fail, options);
+}
+ 
+function capturePhoto() {
+    navigator.camera.getPicture(onCapturePhoto, onFail, {
+        quality: 40,
+        correctOrientation: true,
+        destinationType: destinationType.FILE_URI
+    });
+}
+ 
+function onFail(message) {
+    alert('Failed because: ' + message);
+}

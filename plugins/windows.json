@@ -21,10 +21,16 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "HelloCordova"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "HelloCordova"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "HelloCordova"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "HelloCordova"
         }
     }

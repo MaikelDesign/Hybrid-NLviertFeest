@@ -23,6 +23,8 @@
 <intelxdk:plugin intelxdk:name="Camera" intelxdk:value="cordova-plugin-camera" intelxdk:version="2.2.0" intelxdk:checksum="ec9311a8" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Compat" intelxdk:value="cordova-plugin-compat" intelxdk:version="1.0.0" intelxdk:checksum="61c62eb" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Geolocation" intelxdk:value="cordova-plugin-geolocation" intelxdk:version="2.2.0" intelxdk:checksum="ec466374" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="File" intelxdk:value="cordova-plugin-file" intelxdk:version="4.2.0" intelxdk:checksum="1fdd7f27" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="File Transfer" intelxdk:value="cordova-plugin-file-transfer" intelxdk:version="1.5.1" intelxdk:checksum="dbdc1f18" intelxdk:type="file"/>
 <preference name="Fullscreen" value="false"/>
 <preference name="exit-on-suspend" value="false"/>
 <preference name="ios-configuration" value="production"/>
