@@ -21,60 +21,57 @@ myApp.onPageInit('index', function (page) {
 // 	createIndexPage();
 
 }).trigger();
-					var obj = {};
 
+var obj = {};
 
- function getJsonData() {
+function getJsonData() {
 
-				var obje;
-				$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
-					
+	$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
+		
 
-					for(var i in json.events) {
-							
-							
-									
-						var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
-						var endDate = moment(json.events[i].timestamp_e * 1000).format("DD-MM-YYYY");
-			
-						var startTime = moment(json.events[i].timestamp_b * 1000).format("HH:MM");
-						var endTime = moment(json.events[i].timestamp_e * 1000).format("HH:MM");
+		for(var i in json.events) {
+				
+				
 						
-						obj[i] = { 
-							"ID" : json.events[i].id,
-							"name" : json.events[i].name,
-							"multiple_days" : json.events[i].multiple_days,
-							"timestamp_b" : json.events[i].timestamp_b,
-							"timestamp_e" : json.events[i].timestamp_e,
-							"endtime" : json.events[i].endtime,
-							"description" : json.events[i].description,
-							"facebook" : json.events[i].facebook,
-							"location_name" : json.events[i].location_details.name,
-							"location_address" : json.events[i].location_details.address,
-							"location_zipcode" : json.events[i].location_details.zipcode,
-							"location_place" : json.events[i].location_details.place,
-							"image" : json.events[i].images[0],
-							"ticket_option" : json.events[i].ticket_option,
+			var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
+			var endDate = moment(json.events[i].timestamp_e * 1000).format("DD-MM-YYYY");
+
+			var startTime = moment(json.events[i].timestamp_b * 1000).format("HH:MM");
+			var endTime = moment(json.events[i].timestamp_e * 1000).format("HH:MM");
+			
+			obj[i] = { 
+				"ID" : json.events[i].id,
+				"name" : json.events[i].name,
+				"multiple_days" : json.events[i].multiple_days,
+				"timestamp_b" : json.events[i].timestamp_b,
+				"timestamp_e" : json.events[i].timestamp_e,
+				"endtime" : json.events[i].endtime,
+				"description" : json.events[i].description,
+				"facebook" : json.events[i].facebook,
+				"location_name" : json.events[i].location_details.name,
+				"location_address" : json.events[i].location_details.address,
+				"location_zipcode" : json.events[i].location_details.zipcode,
+				"location_place" : json.events[i].location_details.place,
+				"image" : json.events[i].images[0],
+				"ticket_option" : json.events[i].ticket_option,
 /*
-							"ticket_info" : { 
-								"early" : json.events[i].ticket_info.tp_early,
-								"regular" : json.events[i].ticket_info.tp_regular,
-								"door" : json.events[i].ticket_info.tp_door
-							}
+				"ticket_info" : { 
+					"early" : json.events[i].ticket_info.tp_early,
+					"regular" : json.events[i].ticket_info.tp_regular,
+					"door" : json.events[i].ticket_info.tp_door
+				}
 */
-						};
-						
-					    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
-					    
-						 obje = obj;
-					}
-
-					
-				});	
-
-			}
+			};
 			
-	    	getJsonData();
+		    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+		    
+		}
+
+		
+	});	
+
+}
+			
 var dataObject = getJsonData();
 
 // Event page content and settings
