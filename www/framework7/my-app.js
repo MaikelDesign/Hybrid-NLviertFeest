@@ -69,6 +69,7 @@ function getJsonData() {
 
 		
 	});	
+    return obj;
 
 }
 			
@@ -169,7 +170,6 @@ $$(document.body).on('click', '#event',function(e){
 	
 	// function for read more text
 	// @ if: check content length
-/*
 	$(function(){
 		
 		var max_length = 80;
@@ -230,7 +230,6 @@ $$(document.body).on('click', '#event',function(e){
 		window.location.href = "http://maps.apple.com/?daddr="+location;
 	});
 	
-*/
 	
 });
 
