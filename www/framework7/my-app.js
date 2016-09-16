@@ -22,8 +22,11 @@ myApp.onPageInit('index', function (page) {
 
 }).trigger();
 
+
+var dataObject = JSON.parse(sessionStorage.myObject);
+
 // Event page content and settings
-function createEventContent(name, image, description){ 
+function createEventContent(name, image, description, location_name){ 
 	
 	// check if name exists
 	if(name == null){
@@ -51,7 +54,7 @@ function createEventContent(name, image, description){
 				'			<div class="row no-gutter">'+
 				'				<div class="col-50 cu-short-info">'+
 				' 					<ul>'+
-				'						<li class="listHeader">Locatie</li>'+				
+				'						<li class="listHeader">' + location_name + '</li>'+				
 				'						<li>Tijd</li>'+				
 				'						<li>Entree</li>'+				
 				'						<li>Aanwezigheid</li>'+				
@@ -68,6 +71,7 @@ function createEventContent(name, image, description){
 				'				</div>'+
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
+				'				<div class="col-50"></div>'+
 				'	            <div class="col-50 cu-extra-info" >' + description + '</div>'+
 				'	            <div class="col-50 cu-maps" style="padding: 0px" ><div id="map_canvas" width="100%" height="100%"></div></div>'+
 				'	      	</div>'+
@@ -81,23 +85,42 @@ function createEventContent(name, image, description){
 
 
 $$(document.body).on('click', '#event',function(e){
-	e.preventDefault();
-	
-	// init var for function:	
-	var image = $(this).find('img').attr('src');
-	var name = $(this).find('div.item-title').html();
-// 	var startDate = $(this).find('p.startDate').html();
-// 	var endDate = $(this).find('p.endDate').html();
-	var description = $(this).find('div.item-text').html();
 
-	createEventContent(name, image, description);	
+	e.preventDefault();
+
+	var id = $(this).parents('.media-item').attr('data-id');
+
+	// get the event data from object
+	for (var key in dataObject){
+		
+	 	var obj = dataObject[key];
+	 	for(var prop in obj){
+		 	
+		 	if(obj[prop] === id){
+			 	
+// 			 	console.log(prop + " = " + obj[prop]);
+
+				// init for function and further use of data. 
+	 			var image = obj.image;
+	 			var name = obj.name;
+	 			var description = obj.description;
+	 			var location_address = obj.location_address;
+	 			var place = obj.location_place;
+	 			var location_name = obj.location_name;
+// 	 			console.log(location_address);
+		 	}
+	 	}
+	 	
+	}
+
+	createEventContent(name, image, description, location_name);	
 	
 	
 	// function for read more text
 	// @ if: check content length
 	$(function(){
 		
-		var max_length = 150;
+		var max_length = 80;
 		var cuExtraInfo = $$('.cu-extra-info');
 
 
@@ -108,9 +131,16 @@ $$(document.body).on('click', '#event',function(e){
 			var long_content	= cuExtraInfo.html().substr(max_length);
 			
 			// create the read more button
-			cuExtraInfo.html(short_content+ 
-						 '<a href="#" class="read_more"><br/>Read More</a>'+
-						 '<span class="more_text" style="display:none;">'+long_content+'</span>'); 
+			cuExtraInfo.html(
+// 				"<div class='content-block'>"+
+					"<div class='row no-gutter'>"+
+						"<div class='col-75'><h3>Extra info</h3></div>"+
+						"<a href='#' class='close close-popup'><div class='col-25'>Sluit</div></a>"+
+					"</div>"+
+					"<p>"+short_content+"...</p><a href='#' class='read_more'>Read More</a>"+
+					"<span class='more_text' style='display:none; opacity:0'>"+long_content+"</span>"
+// 				"</div>"
+			); 
 						 
 			// find a.read_more and show other part of content.
 			// - hide read more btn
@@ -119,31 +149,72 @@ $$(document.body).on('click', '#event',function(e){
  
 				event.preventDefault(); 
 				$(this).hide(); 
-				$(this).parents('.cu-extra-info').find('.more_text').show(); 
-		 
+				$(this).parents('.cu-extra-info').addClass('active');
+				$(this).parents('.cu-extra-info').find('.more_text').addClass('on');
+				$(this).parents('.cu-extra-info').find('.close').css({'display':'block'});
+				
+// 				$('.cu-maps, .cu-short-info, .cu-friends-info, .bg-img:before').addClass('cu-fixed');
+// 				$(this).parents('.cu-extra-info').find('.more_text').(); 
+			
 			});			
+			
+			cuExtraInfo.find('a.close').click(function(event){
+				
+				$(this).parents('.cu-extra-info').removeClass('active');
+				$('.more_text').removeClass('on');
+				$(this).css({'display':'none'});
+				$('a.read_more').show();
+			});
 		}
 		
 	});
 
+	var location = location_address + " " + place;
 	// execute maps
-	mapReady();
+	mapReady(location);
 
+	$('.cu-maps').click(location, function(){
+		location = location.split(" ").join('+');
+		window.location.href = "http://maps.apple.com/?daddr="+location;
+	});
+	
+	
 });
 
 
+
 // setup maps 
-function mapReady(){
+function mapReady(location){
 	
 	// Map functionality
-	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:300000, timeout:5000, enableHighAccuracy: true});
+// 	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:300000, timeout:5000, enableHighAccuracy: true});
 	
-	function onSuccess(position){
+// 	function onSuccess(location_address){
+		
+		// own location
+/*
 		lat = position.coords.latitude;
 		lng = position.coords.longitude;
-// 		myApp.alert("getpos: " + lat + ", " + lng);
-		initialize(lat, lng);
-	}
+*/
+
+	// party location
+	var geocoder = new google.maps.Geocoder();
+
+
+	geocoder.geocode({'address':location}, function(results, status){
+				
+		if(status == google.maps.GeocoderStatus.OK){
+			var lat = results[0].geometry.location.lat();
+			var lng = results[0].geometry.location.lng();
+			initialize(lat, lng);
+		}else{
+
+		}
+		
+	});		
+
+		
+// 	}
 
 
 	function onError(error){
@@ -172,20 +243,18 @@ function mapReady(){
 	}
 	
 }
-
-
-	     
+    
 /* 	    google.maps.event.addDomListener(window, 'load', initialize); */
-
 function getJsonData() {
+	
 	$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
-		
+
 		for(var i in json.events) {
-			var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
-			
-		    $$('ul.cu-events').append("<li class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'> <div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+						
+		    $$('ul.cu-events').append("<li class='media-item widget uib_w_11 d-margins'  data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'> <div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
 		}
+
 	});	
+
 }
 
-		

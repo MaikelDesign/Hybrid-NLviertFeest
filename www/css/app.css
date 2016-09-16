@@ -50,9 +50,9 @@ body {
 
 div[class*="col-"] {
   background: #fff;
-  text-align: center;
+  text-align: left;
   color: #000;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   padding: 5px;
 }
     
@@ -101,6 +101,46 @@ div[class*="col-"] {
 .cu-extra-info, .cu-maps{
 	height: 25vh;
 }
+
+.cu-extra-info .close{
+	display:none;
+}
+
+.cu-extra-info h3{
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 0em;
+}
+
+div.col-50.cu-extra-info{
+	overflow: hidden;
+	top:25vh;
+	left:0%;
+/* 	-webkit-transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease; */
+/*   transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease; */
+	transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
+	position:absolute;
+}
+
+div.col-50.cu-extra-info.active{
+	position: absolute;
+	width: 100%;	
+	height: auto;
+	min-height: 50vh;
+	left: 0%;
+	top: 0%;
+	z-index: 9;
+	padding: 1em;
+/* 	-webkit-transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease; */
+/* 	transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease; */
+	transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+span.more_text.on{
+	display: block !important;
+	opacity: 1 !important;
+	transition: display .5s ease;
+}
+
 
 .page[data-page="event"] .page-content{
 	background-color: blue !important;
