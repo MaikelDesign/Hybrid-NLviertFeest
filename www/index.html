@@ -7,7 +7,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="framework7/css/framework7.ios.min.css">
         <meta charset="UTF-8">
-        <title>Blank App Designer Cordova Web App Project Template</title>
+        <title>Nederland viert Feest</title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
         <!--
@@ -61,120 +61,85 @@
         <script type="application/javascript" src="lib/jquery.min.js"></script>
         <script type="application/javascript" src="framework7/js/framework7.min.js"></script>
         <script type="application/javascript" src="camera/cordova-cam.js"></script>
-        <script type="application/javascript" src="js/pull-to-refresh.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDolEFOXA2OGZ0OGkrRFSEBU-Aoh0vU_KY&sensor=true&libraries=places" type="text/javascript"></script>
     </head>
 
     <body>
-        <div class="uwrap views">
-            <div class="upage vertical-col left view-main view" id="mainpage">
+	     <!-- Status bar overlay for fullscreen mode-->
+	    <div class="statusbar-overlay"></div>
+	    <!-- Panels overlay-->
+	    <div class="panel-overlay"></div>
+	    
+        <div class="views tabs toolbar-through">
+	        <!-- Your first view, it is also a .tab and should have "active" class to make it visible by default-->
+            <div id="view-1" class="view view-main tab active">
 					
-				<div class="navbar inner-element uib_w_2" data-uib="framework7/header" data-ver="0">
+				<div class="navbar">
                     <div class="navbar-inner">
                         <div class="left">
                             <div class="widget-container content-area horiz-area wrapping-col"></div>
                         </div>
-                        <div class="center labeltext">Nederland Viert Feest</div>
+                        <div class="center sliding">Nederland Viert Feest</div>
                         <div class="right">
                             <div class="widget-container content-area horiz-area wrapping-col"></div>
                         </div>
                     </div>
                 </div>
-                
-
-                <div class="pages"> 
-
-                    <div class="page navbar-fixed" data-page="index">
-                                               
-                        <div class="page-content upage-content content-area hide-tabbar-on-scroll pull-to-refresh-content" id="page_78_87" data-ptr-distance="44">
-													
-                            <div class="widget uib_w_7 d-margins" data-uib="framework7/list_block" data-ver="0">
-                                <div class="list-block cu-no-margin">
-                                    <ul class="cu-events">
-
-	                                    <!-- List items -->     
-                                    </ul>
-                                </div>
+                <div class="pages navbar-through">
+                    <div data-page="index-1" class="page">
+                        <div class="page-content">				
+                            <div class="list-block cu-no-margin">
+                                <ul class="cu-events">
+                                    <!-- List items -->     
+                                </ul>
                             </div>
-
                         </div>
-   
                     </div>
                 </div>
-
-                
-               <div class="toolbar tabbar inner-element uib_w_5 d-margins" data-uib="framework7/tab_bar" data-ver="0">
-                    <div class="toolbar-inner">
-                        <a href="#" class="tab-link widget uib_w_6 active padding" data-uib="framework7/tab" data-ver="0">
-                            <span class="tabbar-label">Events</span>
-                            <i class="icon-bars icon" data-position="left"></i>
-                        </a>                                                        
-                    </div>
-                </div>
-                
             </div> <!-- end first view -->
             
+            <!-- Photo view -->
+            
+            <div id="view-2" class="view tab">
+					
+				<div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <div class="widget-container content-area horiz-area wrapping-col"></div>
+                        </div>
+                        <div class="center sliding">Nederland Viert Feest</div>
+                        <div class="right">
+                            <div class="widget-container content-area horiz-area wrapping-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pages navbar-through">
+                    <div data-page="index-2" class="page">
+                        <div class="page-content">				
+                            <div class="list-block cu-no-margin">
+                                <ul class="cu-photos">
+                                    <!-- List items --> 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end second view -->
+            
+            <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner">
+                        <a href="#view-1" class="tab-link active">
+                            <i class="icon tabbar-list"></i>
+                            <span class="tabbar-label">Events</span>
+                        </a>   
+                        <a href="#view-2" class="tab-link">
+				            <i class="icon tabbar-camera"></i>
+				            <span class="tabbar-label">Foto's</span>
+				        </a>                                                     
+                    </div>
+                </div>
         </div> <!-- end views -->
-        <script>
-	        
-/*
-	        function getJsonData() {
-
-				var obje;
-				$.getJSON("http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
-					
-					var obj = {};
-
-					for(var i in json.events) {
-									
-						var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
-						var endDate = moment(json.events[i].timestamp_e * 1000).format("DD-MM-YYYY");
-			
-						var startTime = moment(json.events[i].timestamp_b * 1000).format("HH:MM");
-						var endTime = moment(json.events[i].timestamp_e * 1000).format("HH:MM");
-						
-						obj[i] = { 
-							"ID" : json.events[i].id,
-							"name" : json.events[i].name,
-							"multiple_days" : json.events[i].multiple_days,
-							"timestamp_b" : json.events[i].timestamp_b,
-							"timestamp_e" : json.events[i].timestamp_e,
-							"endtime" : json.events[i].endtime,
-							"description" : json.events[i].description,
-							"facebook" : json.events[i].facebook,
-							"location_name" : json.events[i].location_details.name,
-							"location_address" : json.events[i].location_details.address,
-							"location_zipcode" : json.events[i].location_details.zipcode,
-							"location_place" : json.events[i].location_details.place,
-							"image" : json.events[i].images[0],
-							"ticket_option" : json.events[i].ticket_option,
-/*
-							"ticket_info" : { 
-								"early" : json.events[i].ticket_info.tp_early,
-								"regular" : json.events[i].ticket_info.tp_regular,
-								"door" : json.events[i].ticket_info.tp_door
-							}
-*/
-/*
-						};
-						
-					    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
-					    
-						
-					}
-
-					localStorage.setItem("myObject", JSON.stringify(obj));
-					
-				});	
-
-				
-			}
-			
-	    	getJsonData();
-*/
-
-	    	
-	    </script>
+        
         <script type="application/javascript" src="framework7/moments.js"></script>
         <script type="application/javascript" src="framework7/my-app.js"></script>
 
