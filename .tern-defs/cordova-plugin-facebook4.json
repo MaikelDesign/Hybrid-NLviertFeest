@@ -1,0 +1,43 @@
+{
+    "!name": "cordova-plugin-facebook4",
+    "!define": {
+        "!modules": {
+            "FacebookConnectPlugin": {
+                "getLoginStatus": "fn(s: ?, f: ?)",
+                "showDialog": "fn(options: ?, s: ?, f: ?)",
+                "login": "fn(permissions: ?, s: ?, f: ?)",
+                "logEvent": "fn(name: ?, params: ?, valueToSum: ?, s: ?, f: ?)",
+                "logPurchase": "fn(value: ?, currency: ?, s: ?, f: ?)",
+                "getAccessToken": "fn(s: ?, f: ?)",
+                "logout": "fn(s: ?, f: ?)",
+                "api": "fn(graphPath: ?, permissions: [?], s: ?, f: ?)",
+                "appInvite": "fn(options: ?, s: ?, f: ?)",
+                "getDeferredApplink": "fn(s: ?, f: ?)",
+                "activateApp": "fn(s: ?, f: ?)"
+            },
+            "FacebookConnectPluginBrowser": {
+                "getLoginStatus": "fn(s: ?, f: ?)",
+                "showDialog": "fn(options: !modules.FacebookConnectPluginBrowser.showDialog.!0, s: ?, f: ?)",
+                "login": "fn(permissions: ?, s: ?, f: ?)",
+                "getAccessToken": "fn(s: ?, f: ?)",
+                "logEvent": "fn(eventName: ?, params: ?, valueToSum: ?, s: ?, f: ?)",
+                "logPurchase": "fn(value: ?, currency: ?, s: ?, f: ?)",
+                "appInvite": "fn(options: ?, s: ?, f: ?)",
+                "logout": "fn(s: ?, f: ?)",
+                "api": "fn(graphPath: ?, permissions: ?, s: ?, f: ?)",
+                "browserInit": "fn(appId: ?, version: string, s: string)"
+            }
+        },
+        "!modules.FacebookConnectPlugin.api.!1": "[?]",
+        "!modules.FacebookConnectPluginBrowser.showDialog.!0": {
+            "name": "string",
+            "message": "string",
+            "caption": "string",
+            "description": "string",
+            "href": "string",
+            "picture": "string"
+        }
+    },
+    "!plugin-version": "1.7.1",
+    "facebookConnectPlugin": "!modules.FacebookConnectPlugin"
+}
