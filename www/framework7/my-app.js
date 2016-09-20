@@ -88,7 +88,7 @@ function getJsonData() {
 */
 			};
 			
-		    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80px' width='57px'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+		    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item event_list widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80px' width='57px'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
 		    
 		}
 
@@ -97,6 +97,25 @@ function getJsonData() {
     return obj;
 
 }
+
+// Pull to refresh content
+var ptrContentEvents = $$('.pull-to-refresh-content-events');
+ 
+// Add 'refresh' listener on it
+ptrContentEvents.on('refresh', function (e) {
+    // Emulate 2s loading
+    setTimeout(function () {
+        var obj = {};
+        
+        $$('li.event_list').remove();
+
+		
+		getJsonData();
+		
+        // When loading done, we need to reset it
+        myApp.pullToRefreshDone();
+    }, 2000);
+});
 			
 var dataObject = getJsonData();
 
@@ -117,7 +136,7 @@ function createEventContent(id, name, image, description, location_name){
 				'				<div class="left">'+
 				'		 			<a href="#" class="link back" data-view="#view-1">'+
 				'						<i class="icon icon-back"></i>'+
-				'						<span>Back</span>'+
+				'						<span>Terug</span>'+
 				'					</a>'+
 				'		        </div>'+
 				'            </div>'+
@@ -144,7 +163,7 @@ function createEventContent(id, name, image, description, location_name){
 				'						<li>Aanwezig</li>'+	
 				'						<li>Voeg foto toe</li>'+			
 				'					</ul>'+
-				'					<a class="button widget uib_w_8" id="' + id + '" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\'); reply_click(this.id);"><i class="icon icon-camera"></i></a>' +
+				'					<a class="button widget uib_w_8" id="' + id + '" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\'); reply_click(this.id);"><i class="icon tabbar-camera active"></i></a>' +
 				'				</div>'+
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
@@ -354,7 +373,7 @@ function onCapturePhoto(fileURI) {
     var win = function (r) {
         clearCache();
         retries = 0;
-        alert('Done!');
+        myApp.alert('Afbeelding successvol geupload', 'Nederland viert Feest');
     }
  
     var fail = function (error) {
@@ -366,7 +385,7 @@ function onCapturePhoto(fileURI) {
         } else {
             retries = 0;
             clearCache();
-            alert('Ups. Something wrong happens!');
+            myApp.alert('Er is iets mis gegaan', 'Nederland viert Feest');
         }
     }
     
@@ -391,7 +410,7 @@ function capturePhoto() {
 }
  
 function onFail(message) {
-    alert('Failed because: ' + message);
+    myApp.alert('Geen afbeelding geselecteerd', 'Nederland viert Feest');
 }
 
 
@@ -401,14 +420,33 @@ function onFail(message) {
 *
 ***************************************/
 
-$.getJSON("http://app.veldhovenviertfeest.nl/photo/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
-	
-
-	for(var i in json.pictures) {
+function loadPhotoData() {
+	$.getJSON("http://app.veldhovenviertfeest.nl/photo/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
 		
-	    $$('ul.cu-photos').append("<li data-id='" + json.pictures[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><div class='item-content'><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.pictures[i].name + "</div></div><div class='item-media'><img src='" + json.pictures[i].url + "'height='500px' width='340px'></div></div></div></li>");
-	    
-	}
-
 	
+		for(var i in json.pictures) {
+			
+		    $$('ul.cu-photos').append("<li data-id='" + json.pictures[i].id + "' class='media-item photo_list widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><div class='item-content'><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.pictures[i].name + "</div></div><div class='item-media'><img class='photo_timeline' src='" + json.pictures[i].url + "'></div></div></div></li>");
+		    
+		}
+	
+		
+	});
+}
+loadPhotoData();
+
+// Pull to refresh content
+var ptrContentPhotos = $$('.pull-to-refresh-content-photos');
+ 
+// Add 'refresh' listener on it
+ptrContentPhotos.on('refresh', function (e) {
+    // Emulate 2s loading
+    setTimeout(function () {
+	    loadPhotoData();
+		
+		$$('li.photo_list').remove();
+		
+        // When loading done, we need to reset it
+        myApp.pullToRefreshDone();
+    }, 2000);
 });

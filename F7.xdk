@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "0ff2aa07-cb40-4a9a-a525-0ccc0c0b1629",
-      "lastModifiedDate": 1474304947998,
+      "lastModifiedDate": 1474370520287,
       "creationDate": 1473246003735
     },
     "XDK-app-designer": "true",
@@ -250,12 +250,13 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "21",
           "android-installLocation": "auto",
-          "android-signed": true
+          "android-signed": true,
+          "Orientation": "portrait"
         },
         "isActive_": true,
-        "certificateId_": "",
-        "appName_": "F7",
-        "appID_": "xdk.intel.blank.ad.template.crosswalk",
+        "certificateId_": "pMklUZkdx0WU-RtxQixqqg2",
+        "appName_": "Feest!",
+        "appID_": "nl.fressh.nlviertfeest",
         "appAccess_": {
           "mode": "whitelist",
           "network": [
@@ -274,13 +275,13 @@
         },
         "icons_": [],
         "splashes_": [],
-        "addlPermissions_": "",
+        "addlPermissions_": "tools:overrideLibrary=\"com.facebook\"",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "6.2.0",
         "crosswalkVersion_": "19",
-        "appVersion_": "0.0.1",
-        "appAuthor_": "Intel XDK",
-        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor.",
+        "appVersion_": "0.1",
+        "appAuthor_": "SevenStars",
+        "appDescription_": "App om evenementen in de buurt bij te houden",
         "appVersionCode_": "1",
         "signed_": true
       },
@@ -297,7 +298,7 @@
         },
         "isActive_": true,
         "certificateId_": "AC0eeHpBp0Wne1FNM8hUtw2",
-        "appName_": "Nederland viert Feest",
+        "appName_": "Feest!",
         "appID_": "nl.fressh.nlviertfeest",
         "appAccess_": {
           "mode": "whitelist",
