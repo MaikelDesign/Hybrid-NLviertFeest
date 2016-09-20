@@ -10,17 +10,42 @@ var myApp = new Framework7({
 var $$ = Dom7;
 
 // Add view
-var mainView = myApp.addView('.view-main', {
+var mainView = myApp.addView('#view-1', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true,
     domCache: true
 });
 
-myApp.onPageInit('index', function (page) {
+var photoView = myApp.addView('#view-2', {
+    // Because we use fixed-through navbar we can enable dynamic navbar
+    dynamicNavbar: true,
+    domCache: true
+});
+
+myApp.onPageInit('index-1', function (page) {
 
 // 	createIndexPage();
 
 }).trigger();
+
+myApp.onPageInit('index-2', function (page) {
+
+// 	createIndexPage();
+
+}).trigger();
+
+/*
+myApp.onPageInit('photo', function (page) {
+  console.log('Services page initialized');
+  console.log(page);
+});
+*/
+
+/***************************************
+*
+*	Listview home with events
+*
+***************************************/
 
 var obj = {};
 
@@ -33,8 +58,8 @@ function getJsonData() {
 				
 				
 						
-			var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM-YYYY");
-			var endDate = moment(json.events[i].timestamp_e * 1000).format("DD-MM-YYYY");
+			var startDate = moment(json.events[i].timestamp_b * 1000).format("DD-MM");
+			var endDate = moment(json.events[i].timestamp_e * 1000).format("DD-MM");
 
 			var startTime = moment(json.events[i].timestamp_b * 1000).format("HH:MM");
 			var endTime = moment(json.events[i].timestamp_e * 1000).format("HH:MM");
@@ -63,7 +88,7 @@ function getJsonData() {
 */
 			};
 			
-		    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
+		    $$('ul.cu-events').append("<li data-id='" + json.events[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><a href='#' id='event'><div class='item-content'><div class='item-media'><img src='" + json.events[i].images[0] + "' height='80px' width='57px'></div><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.events[i].name + "</div><div class='item-after'>" + startDate + "</div></div><div class='item-subtitle'>" + json.events[i].location_details.name + "</div><div class='item-text'>" + json.events[i].description + "</div></div></div></a></li>");
 		    
 		}
 
@@ -76,7 +101,7 @@ function getJsonData() {
 var dataObject = getJsonData();
 
 // Event page content and settings
-function createEventContent(name, image, description, location_name){ 
+function createEventContent(id, name, image, description, location_name){ 
 	
 	// check if name exists
 	if(name == null){
@@ -90,20 +115,20 @@ function createEventContent(name, image, description, location_name){
 				'			<div class="left">'+
 				'		    	<div class="widget-container content-area horiz-area wrapping-col"></div>'+
 				'				<div class="left">'+
-				'		 			<a href="#" class="link back" data-view=".view-main">'+
+				'		 			<a href="#" class="link back" data-view="#view-1">'+
 				'						<i class="icon icon-back"></i>'+
 				'						<span>Back</span>'+
 				'					</a>'+
 				'		        </div>'+
 				'            </div>'+
-				'			 <div class="center labeltext">' + name  + '</div>' +
+				'			 <div class="center sliding">' + name  + '</div>' +
 				'	         <div class="right">'+
 				'  	            <div class="widget-container content-area horiz-area wrapping-col"></div>'+
 				'	         </div>'+
 				'	    </div>'+
 				'	</div>'+
 				'	<div class="page-content bg-img" style="background: url('+  image  +') no-repeat center center fixed; background-size: cover;" >'+
-				'	    <div class="content-block cu-bottom cu-no-margin cu-no-padding">'+
+				'	    <div class="content-block cu-bottom cu-no-padding" style="margin-bottom:50px;">'+
 				'			<div class="row no-gutter">'+
 				'				<div class="col-50 cu-short-info">'+
 				' 					<ul>'+
@@ -119,7 +144,7 @@ function createEventContent(name, image, description, location_name){
 				'						<li>Aanwezig</li>'+	
 				'						<li>Voeg foto toe</li>'+			
 				'					</ul>'+
-				'					<a class="button widget uib_w_8" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\')"><i class="icon icon-camera"></i></a>' +
+				'					<a class="button widget uib_w_8" id="' + id + '" data-uib="framework7/button" data-ver="0" onclick="capturePhoto(\'.uib_w_8 img\'); reply_click(this.id);"><i class="icon icon-camera"></i></a>' +
 				'				</div>'+
 				'			</div>'+	
 				'	    	<div class="row no-gutter">'+
@@ -153,6 +178,7 @@ $$(document.body).on('click', '#event',function(e){
 // 			 	console.log(prop + " = " + obj[prop]);
 
 				// init for function and further use of data. 
+				var id = obj.ID;
 	 			var image = obj.image;
 	 			var name = obj.name;
 	 			var description = obj.description;
@@ -165,7 +191,7 @@ $$(document.body).on('click', '#event',function(e){
 	 	
 	}
 
-	createEventContent( name, image, description, location_name );	
+	createEventContent(id, name, image, description, location_name);	
 	
 	
 	// function for read more text
@@ -185,7 +211,7 @@ $$(document.body).on('click', '#event',function(e){
 			// create the read more button
 			cuExtraInfo.html(
 // 				"<div class='content-block'>"+
-					"<div class='row no-gutter'>"+
+					"<div class='row'>"+
 						"<div class='col-75'><h3>Extra info</h3></div>"+
 						"<a href='#' class='close close-popup'><div class='col-25'>Sluit</div></a>"+
 					"</div>"+
@@ -295,7 +321,7 @@ function mapReady(location){
 	}
 	
 }
-    
+   
 
 
 /***************************************
@@ -303,6 +329,11 @@ function mapReady(location){
 *	Picture upload
 *
 ***************************************/
+
+var event_ID = 0;
+function reply_click(clicked_id) {
+	event_ID = clicked_id;
+}
 
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
@@ -340,7 +371,7 @@ function onCapturePhoto(fileURI) {
     }
     
     var params = {};
-    params.eventId = 22;
+    params.eventId = event_ID;
  
     var options = new FileUploadOptions();
     options.fileKey = "file";
@@ -362,3 +393,22 @@ function capturePhoto() {
 function onFail(message) {
     alert('Failed because: ' + message);
 }
+
+
+/***************************************
+*
+*	Photo timeline
+*
+***************************************/
+
+$.getJSON("http://app.veldhovenviertfeest.nl/photo/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923", function(json) {
+	
+
+	for(var i in json.pictures) {
+		
+	    $$('ul.cu-photos').append("<li data-id='" + json.pictures[i].id + "' class='media-item widget uib_w_11 d-margins' data-uib='framework7/media_item' data-ver='0'><div class='item-content'><div class='item-inner'><div class='item-title-row'><div class='item-title'>" + json.pictures[i].name + "</div></div><div class='item-media'><img src='" + json.pictures[i].url + "'height='500px' width='340px'></div></div></div></li>");
+	    
+	}
+
+	
+});
