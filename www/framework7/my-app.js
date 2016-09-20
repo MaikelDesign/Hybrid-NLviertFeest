@@ -278,7 +278,33 @@ $$(document.body).on('click', '#event',function(e){
 	
 });
 
+/***************************************
+*
+*	Facebook API
+*
+***************************************/
 
+
+document.addEventListener("deviceready", facebookHandler(), false);
+
+				
+function facebookHandler(){
+		alert('ready');
+	facebookConnectPlugin.browserInit(127020264423117); 
+	
+	var fbLoginSuccess = function (userData) {
+    	alert("UserInfo: " + JSON.stringify(userData));
+	}
+	
+	facebookConnectPlugin.login(['maikel.verbeek.3'],fbLoginSuccess, function(error) {alert("" + error)});
+
+}
+
+/***************************************
+*
+*	Google Maps API
+*
+***************************************/
 
 // setup maps 
 function mapReady(location){
@@ -359,7 +385,10 @@ var destinationType; // sets the format of returned value
  
 document.addEventListener("deviceready", onDeviceReady, false);
  
-function onDeviceReady() {
+function onDeviceReady() {	
+	
+// 	facebookHandler();
+	
     pictureSource = navigator.camera.PictureSourceType;
     destinationType = navigator.camera.DestinationType;
 }
