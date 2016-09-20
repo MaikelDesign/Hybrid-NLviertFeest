@@ -16,6 +16,14 @@
 <allow-intent href="mailto:*"/>
 <allow-intent href="geo:*"/>
 <allow-intent href="market:*"/>
+<icon platform="android" src="package-assets/icons/android/mipmap-ldpi/ic_launcher.png" density="ldpi" width="36" height="36"/>
+<icon platform="android" src="package-assets/icons/android/mipmap-mdpi/ic_launcher.png" density="mdpi" width="48" height="48"/>
+<icon platform="android" src="package-assets/icons/android/mipmap-hdpi/ic_launcher.png" density="hdpi" width="72" height="72"/>
+<icon platform="android" src="package-assets/icons/android/mipmap-xhdpi/ic_launcher.png" density="xhdpi" width="96" height="96"/>
+<splash platform="android" src="package-assets/splashscreen/android/android_ldpi.png" density="ldpi" width="320" height="426" orientation="portrait"/>
+<splash platform="android" src="package-assets/splashscreen/android/android_mdpi.png" density="mdpi" width="320" height="470" orientation="portrait"/>
+<splash platform="android" src="package-assets/splashscreen/android/android_hdpi.png" density="hdpi" width="480" height="640" orientation="portrait"/>
+<splash platform="android" src="package-assets/splashscreen/android/android_xhdpi.png" density="xhdpi" width="720" height="960" orientation="portrait"/>
 <intelxdk:plugin intelxdk:name="StatusBar" intelxdk:value="cordova-plugin-statusbar" intelxdk:version="2.1.3" intelxdk:checksum="c0146fbc" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Device" intelxdk:value="cordova-plugin-device" intelxdk:version="1.1.2" intelxdk:checksum="2373ccea" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Splashscreen" intelxdk:value="cordova-plugin-splashscreen" intelxdk:version="3.2.2" intelxdk:checksum="47137083" intelxdk:type="file"/>
@@ -29,14 +37,14 @@
 <intelxdk:param intelxdk:name="APP_NAME" intelxdk:value="Nederland Viert Feest"/></intelxdk:plugin>
 <intelxdk:plugin intelxdk:name="InAppBrowser" intelxdk:value="cordova-plugin-inappbrowser" intelxdk:version="1.4.0" intelxdk:checksum="f88bc51f" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Cordova Network Whitelist Plugin (added by Intel XDK)" intelxdk:value="cordova-plugin-whitelist" intelxdk:version="1.2.2"/>
-<preference name="android-minSdkVersion" value="14"/>
+<preference name="android-minSdkVersion" value="16"/>
 <preference name="android-targetSdkVersion" value="21"/>
 <preference name="android-installLocation" value="auto"/>
 <preference name="android-signed" value="true"/>
 <platform name="android">
 <preference name="Orientation" value="portrait"/></platform>
 <intelxdk:crosswalk version="19"/>
-<preference name="android-permission" value="tools:overrideLibrary=&quot;com.facebook&quot;"/>
+<preference name="splashscreen" value="splash"/>
 <!--creationInfo:{"src":"jsapp/template-blank-cordova-ad-project/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}-->
 <preference name="debuggable" value="false"/>
 <platform name="ios">
