@@ -77,18 +77,22 @@
 				<div class="navbar">
                     <div class="navbar-inner">
                         <div class="left">
-                            <div class="widget-container content-area horiz-area wrapping-col"></div>
+                            <div class="widget-container content-area horiz-area wrapping-col">
+	                            <a href="#" class="link" onclick="getInfo();">
+									<span>Info</span>
+								</a>	                        
+                            </div>
                         </div>
                         <div class="center sliding">Nederland Viert Feest</div>
                         <div class="right">
                             <div class="widget-container content-area horiz-area wrapping-col">
-								<a href="#" class="link event listening button" onclick="checkLoginState();">
+								<a href="#" class="link login active" onclick="login();">
 									<span>Login</span>
 								</a>
-<!--
-								<fb:login-button autologoutlink="true" scope="user_likes, user_friends, rsvp_event, user_events" onlogin="checkLoginState();"></fb:login-button>
-	                        
---></div>
+								<a href="#" class="link logout" onclick="logout();">
+									<span>logout</span>
+								</a>
+						</div>
                         </div>
                     </div>
                 </div>
@@ -158,122 +162,99 @@
                     </div>
                 </div>
         </div> <!-- end views -->
-        	<script>
-
-	// This function is called when someone finishes with the Login
-
-			    
-			 
-				
-			    function statusChangeCallback(response) {
-				    	console.log('statusChangeCallback');
-				    	alert(response);
-				    
-					  if (response.status === 'connected') {
-					    // the user is logged in and has authenticated your
-					    // app, and response.authResponse supplies
-					    // the user's ID, a valid access token, a signed
-					    // request, and the time the access token 
-					    // and signed request each expire
-					    var uid = response.authResponse.userID;
-					    var accessToken = response.authResponse.accessToken;
-					    console.log('userID: '+uid+' - - accessToken: '+accessToken);
-						testAPI();
-					  } else if (response.status === 'not_authorized') {
-					    // the user is logged in to Facebook, 
-					    // but has not authenticated your app
-					    FB.login(function(response) {}, {scope: 'user_likes, user_friends, rsvp_event, user_events'});
-        			  } else {
-					    // the user isn't logged in to Facebook.
-	    			    FB.login(function(response) {}, {scope: 'user_likes, user_friends, rsvp_event, user_events'});
-					  }
-					  
-					  return accessToken;
-					  
-				 }; // statusChangeCallback end
-
-			
-				
-				
-			window.fbAsyncInit = function() {
-			   FB.init({
-			      appId      : '127020264423117',
-			      status	 : true,
-			      xfbml      : true,
-			      cookie	 : true,
-			      version    : 'v2.7'
-			    });
-				 
-				
-/*
-				FB.getLoginStatus(function(response) {
-					
-					statusChangeCallback(response);
-					
-					FB.api('/1052545014834420?fields=attending.limit(attending_count)', function(response){ 
-						
-						alert(JSON.stringify(response.attending_count));
-*/
-						
-/*
-						 FB.api('/1052545014834420?fields=attending.limit('+count+')', function(response){ 
-							 console.log(JSON.stringify(response,null,2));				        
-						 });	
-*/		        
-// 					});
-
-// 				 });	 
-		
-		
-//GET friends events: me?fields=friends{id,name,events{id,name,start_time}}
-				
-// 				var attending = FB.api('/[EVENT-ID]?fields=attending');
-
-// 				FB.api('/1052545014834420?fields=attending', function(response){ 
-// 					 document.getElementById('return').innerHTML = JSON.stringify(response);				        
-// 				} );
-				
-				
-			    
-			}; // fbAsyncInit end
-			
-			(function(d, s, id){
-			
-			     var js, fjs = d.getElementsByTagName(s)[0];
-			     if (d.getElementById(id)) {return;}
-			     js = d.createElement(s); js.id = id;
-			     js.src = "//connect.facebook.net/en_US/sdk.js";
-			     fjs.parentNode.insertBefore(js, fjs);
-			     
-			}(document, 'script', 'facebook-jssdk'));
-			
-			
-				// Button.  See the onlogin handler attached to it in the sample
-				// code below.
-				function checkLoginState() {
-					alert('tap');
-				    FB.getLoginStatus(function(response) {
-// 				      statusChangeCallback(response);
-						alert(response);				      
-				    });
-				}
-			
-			
-     		 // Here we run a very simple test of the Graph API after login is successful. 
-	 		 // This testAPI() function is only called in those cases. 
-	 		 function testAPI() {
-	 		 	console.log('Welcome!  Fetching your information.... ');
-	 		 	FB.api('/me', function(response) {
-	 		 		console.log('Good to see you, ' + response.name + '.');
-// 					document.getElementById('status').innerHTML = 'Thanks for loggin in, ' + response.name + '!';
-
-	 		 	});
-			}	
-						
-	</script>
         <script type="application/javascript" src="framework7/moments.js"></script>
         <script type="application/javascript" src="framework7/my-app.js"></script>
-        <script src="http://debug-software.intel.com/target/target-script-min.js#QoZYbK5OnPWPooZBexBXNW1_UH53ykmfyLgT2fH9vEc"></script>
+     	<script src="js/openfb.js"></script>
+
+<script>
+
+     // Defaults to sessionStorage for storing the Facebook token
+     openFB.init({appId: '127020264423117'});
+
+    //  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
+//      openFB.init({appId: 'YOUR_FB_APP_ID', tokenStore: window.localStorage});
+
+	(function(){
+		login();		
+	});
+
+    function login() {
+		     openFB.login(
+	            function(response) {
+	                if(response.status === 'connected') {
+	                    alert('Welcome ' + response.name);
+	                    alert('Facebook login succeeded! Your access token: ' + response.authResponse.accessToken);
+	                    
+	                    $('a.link.login').removeClass('active');
+						$('a.link.logout').addClass('active');
+	                } else {
+	                    alert('Facebook login failed: ' + response.error);
+	                }
+	            }, {scope: 'email'});
+ 
+                       
+    }
+
+    function getInfo() {
+        openFB.api({
+            path: '/me',
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                alert('You are: '+data.name);
+                document.getElementById("userName").innerHTML = data.name;
+                document.getElementById("userPic").src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+            },
+            error: errorHandler});
+    }
+
+    function share() {
+        openFB.api({
+            method: 'POST',
+            path: '/me/feed',
+            params: {
+                message: document.getElementById('Message').value || 'Testing Facebook APIs'
+            },
+            success: function() {
+                alert('the item was posted on Facebook');
+            },
+            error: errorHandler});
+    }
+
+    function readPermissions() {
+        openFB.api({
+            method: 'GET',
+            path: '/me/permissions',
+            success: function(result) {
+                alert(JSON.stringify(result.data));
+            },
+            error: errorHandler
+        });
+    }
+
+    function revoke() {
+        openFB.revokePermissions(
+                function() {
+                    alert('Permissions revoked');
+                },
+                errorHandler);
+    }
+
+    function logout() {
+        openFB.logout(
+                function() {
+                    alert('Logout successful');
+                    $('a.link.logout').removeClass('active');
+					$('a.link.login').addClass('active');
+                },
+                errorHandler);
+    }
+
+    function errorHandler(error) {
+        alert(error.message);
+    }
+
+</script>
+
 	</body>
 
 </html>
