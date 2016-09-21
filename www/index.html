@@ -62,7 +62,6 @@
         <script type="application/javascript" src="framework7/js/framework7.min.js"></script>
         <script type="application/javascript" src="camera/cordova-cam.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDolEFOXA2OGZ0OGkrRFSEBU-Aoh0vU_KY&sensor=true&libraries=places" type="text/javascript"></script>
-        
     </head>
 
     <body>
@@ -83,10 +82,13 @@
                         <div class="center sliding">Nederland Viert Feest</div>
                         <div class="right">
                             <div class="widget-container content-area horiz-area wrapping-col">
-								<a href="#" class="link" onclick="facebookHandler()">
+								<a href="#" class="link event listening button" onclick="checkLoginState();">
 									<span>Login</span>
 								</a>
-	                        </div>
+<!--
+								<fb:login-button autologoutlink="true" scope="user_likes, user_friends, rsvp_event, user_events" onlogin="checkLoginState();"></fb:login-button>
+	                        
+--></div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +120,7 @@
                         <div class="left">
                             <div class="widget-container content-area horiz-area wrapping-col"></div>
                         </div>
-                        <div class="center sliding">Nederland Viert Feest</div>
+                        <div class="center sliding">Nederland Viert Feest</div><div id="fb-root"></div>
                         <div class="right">
                             <div class="widget-container content-area horiz-area wrapping-col"></div>
                         </div>
@@ -156,11 +158,122 @@
                     </div>
                 </div>
         </div> <!-- end views -->
-        
+        	<script>
+
+	// This function is called when someone finishes with the Login
+
+			    
+			 
+				
+			    function statusChangeCallback(response) {
+				    	console.log('statusChangeCallback');
+				    	alert(response);
+				    
+					  if (response.status === 'connected') {
+					    // the user is logged in and has authenticated your
+					    // app, and response.authResponse supplies
+					    // the user's ID, a valid access token, a signed
+					    // request, and the time the access token 
+					    // and signed request each expire
+					    var uid = response.authResponse.userID;
+					    var accessToken = response.authResponse.accessToken;
+					    console.log('userID: '+uid+' - - accessToken: '+accessToken);
+						testAPI();
+					  } else if (response.status === 'not_authorized') {
+					    // the user is logged in to Facebook, 
+					    // but has not authenticated your app
+					    FB.login(function(response) {}, {scope: 'user_likes, user_friends, rsvp_event, user_events'});
+        			  } else {
+					    // the user isn't logged in to Facebook.
+	    			    FB.login(function(response) {}, {scope: 'user_likes, user_friends, rsvp_event, user_events'});
+					  }
+					  
+					  return accessToken;
+					  
+				 }; // statusChangeCallback end
+
+			
+				
+				
+			window.fbAsyncInit = function() {
+			   FB.init({
+			      appId      : '127020264423117',
+			      status	 : true,
+			      xfbml      : true,
+			      cookie	 : true,
+			      version    : 'v2.7'
+			    });
+				 
+				
+/*
+				FB.getLoginStatus(function(response) {
+					
+					statusChangeCallback(response);
+					
+					FB.api('/1052545014834420?fields=attending.limit(attending_count)', function(response){ 
+						
+						alert(JSON.stringify(response.attending_count));
+*/
+						
+/*
+						 FB.api('/1052545014834420?fields=attending.limit('+count+')', function(response){ 
+							 console.log(JSON.stringify(response,null,2));				        
+						 });	
+*/		        
+// 					});
+
+// 				 });	 
+		
+		
+//GET friends events: me?fields=friends{id,name,events{id,name,start_time}}
+				
+// 				var attending = FB.api('/[EVENT-ID]?fields=attending');
+
+// 				FB.api('/1052545014834420?fields=attending', function(response){ 
+// 					 document.getElementById('return').innerHTML = JSON.stringify(response);				        
+// 				} );
+				
+				
+			    
+			}; // fbAsyncInit end
+			
+			(function(d, s, id){
+			
+			     var js, fjs = d.getElementsByTagName(s)[0];
+			     if (d.getElementById(id)) {return;}
+			     js = d.createElement(s); js.id = id;
+			     js.src = "//connect.facebook.net/en_US/sdk.js";
+			     fjs.parentNode.insertBefore(js, fjs);
+			     
+			}(document, 'script', 'facebook-jssdk'));
+			
+			
+				// Button.  See the onlogin handler attached to it in the sample
+				// code below.
+				function checkLoginState() {
+					alert('tap');
+				    FB.getLoginStatus(function(response) {
+// 				      statusChangeCallback(response);
+						alert(response);				      
+				    });
+				}
+			
+			
+     		 // Here we run a very simple test of the Graph API after login is successful. 
+	 		 // This testAPI() function is only called in those cases. 
+	 		 function testAPI() {
+	 		 	console.log('Welcome!  Fetching your information.... ');
+	 		 	FB.api('/me', function(response) {
+	 		 		console.log('Good to see you, ' + response.name + '.');
+// 					document.getElementById('status').innerHTML = 'Thanks for loggin in, ' + response.name + '!';
+
+	 		 	});
+			}	
+						
+	</script>
         <script type="application/javascript" src="framework7/moments.js"></script>
         <script type="application/javascript" src="framework7/my-app.js"></script>
-        <script type="application/javascript" src="framework7/facebook.js"></script>
-
+        <script src="http://debug-software.intel.com/target/target-script-min.js#QoZYbK5OnPWPooZBexBXNW1_UH53ykmfyLgT2fH9vEc"></script>
 	</body>
 
 </html>

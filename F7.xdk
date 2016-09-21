@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "0ff2aa07-cb40-4a9a-a525-0ccc0c0b1629",
-      "lastModifiedDate": 1474377458836,
+      "lastModifiedDate": 1474448237954,
       "creationDate": 1473246003735
     },
     "XDK-app-designer": "true",
@@ -201,27 +201,6 @@
         "dependedBy": []
       },
       {
-        "id": "cordova-plugin-facebook4",
-        "name": "Facebook Connect",
-        "version": "1.7.1",
-        "originType": "cordova.io",
-        "origin": "cordova-plugin-facebook4",
-        "gitref": "",
-        "paramvals": {
-          "APP_ID": "127020264423117",
-          "APP_NAME": "Nederland Viert Feest"
-        },
-        "sourceLocation": "plugins/cordova-plugin-facebook4",
-        "selectedState": "Included",
-        "checksum": "5a1597eb",
-        "dependsOn": [],
-        "topLevel": true,
-        "permissions": {},
-        "description": "\n      This is the official plugin for Facebook in Apache Cordova/PhoneGap!\n\n      The Facebook plugin for Apache Cordova allows you to use the same JavaScript code in your\n      Cordova application as you use in your web application.\n      Docs: https://github.com/Wizcorp/phonegap-facebook-plugin.\n    ",
-        "data": {},
-        "dependedBy": []
-      },
-      {
         "id": "cordova-plugin-inappbrowser",
         "name": "InAppBrowser",
         "version": "1.4.0",
@@ -346,12 +325,12 @@
         "preferences_": {
           "Fullscreen": false,
           "exit-on-suspend": false,
-          "ios-configuration": "production",
+          "ios-configuration": "adhoc",
           "deployment-target": "8.0",
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "certificateId_": "AC0eeHpBp0Wne1FNM8hUtw2",
+        "certificateId_": "xArz7-tBZkSK-Gr1EQgJxw2",
         "appName_": "Feest!",
         "appID_": "nl.fressh.nlviertfeest",
         "appAccess_": {

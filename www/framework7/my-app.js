@@ -22,6 +22,8 @@ var photoView = myApp.addView('#view-2', {
     domCache: true
 });
 
+
+
 myApp.onPageInit('index-1', function (page) {
 
 // 	createIndexPage();
@@ -289,15 +291,10 @@ document.addEventListener("deviceready", facebookHandler(), false);
 
 				
 function facebookHandler(){
-		alert('ready');
-	facebookConnectPlugin.browserInit(127020264423117); 
 	
-	var fbLoginSuccess = function (userData) {
-    	alert("UserInfo: " + JSON.stringify(userData));
-	}
-	
-	facebookConnectPlugin.login(['maikel.verbeek.3'],fbLoginSuccess, function(error) {alert("" + error)});
+// 	alert('ready');
 
+	
 }
 
 /***************************************
