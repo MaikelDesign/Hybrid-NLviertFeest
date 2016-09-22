@@ -280,22 +280,7 @@ $$(document.body).on('click', '#event',function(e){
 	
 });
 
-/***************************************
-*
-*	Facebook API
-*
-***************************************/
 
-
-document.addEventListener("deviceready", facebookHandler(), false);
-
-				
-function facebookHandler(){
-	
-// 	alert('ready');
-
-	
-}
 
 /***************************************
 *
@@ -476,3 +461,20 @@ ptrContentPhotos.on('refresh', function (e) {
         myApp.pullToRefreshDone();
     }, 2000);
 });
+
+/***************************************
+*
+*	Facebook API
+*
+***************************************/
+
+
+document.addEventListener("deviceready", facebookHandler(), false);
+
+				
+function facebookHandler(){
+	
+// 	alert('ready');
+
+	
+}

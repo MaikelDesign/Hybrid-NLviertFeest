@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "0ff2aa07-cb40-4a9a-a525-0ccc0c0b1629",
-      "lastModifiedDate": 1474448237954,
+      "lastModifiedDate": 1474562881887,
       "creationDate": 1473246003735
     },
     "XDK-app-designer": "true",
@@ -315,7 +315,7 @@
         "appVersion_": "0.1",
         "appAuthor_": "SevenStars",
         "appDescription_": "App om evenementen in de buurt bij te houden",
-        "appVersionCode_": "1",
+        "appVersionCode_": "2",
         "signed_": true
       },
       "iOS": {
@@ -325,12 +325,12 @@
         "preferences_": {
           "Fullscreen": false,
           "exit-on-suspend": false,
-          "ios-configuration": "adhoc",
+          "ios-configuration": "production",
           "deployment-target": "8.0",
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "certificateId_": "xArz7-tBZkSK-Gr1EQgJxw2",
+        "certificateId_": "AC0eeHpBp0Wne1FNM8hUtw2",
         "appName_": "Feest!",
         "appID_": "nl.fressh.nlviertfeest",
         "appAccess_": {
@@ -446,7 +446,7 @@
         "appVersion_": "0.1",
         "appAuthor_": "Seven Stars",
         "appDescription_": "App om evenementen in de buurt bij te houden",
-        "appVersionCode_": "6"
+        "appVersionCode_": "7"
       },
       "Windows8": {
         "platform_": "windows8",
